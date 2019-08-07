@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model,login, authenticate
 from django.contrib import auth
 from django import forms
 from django.views import generic
-from .forms import SignupForm,LoginForm,UpdateForm,UserCreationForm
+from .forms import UserCreationMultiForm,LoginForm,UpdateForm,UserCreationForm
 from .models import Signup,Relationship
 from Board.models import Post,participants,Rating
 from chatting.models import MessageModel
@@ -30,7 +30,7 @@ def signup(request):
             print(new_user.image)
             new_user.user = User
             new_user.save()
-            return redirect('/')
+            return redirect('login')
     else:
         form=UserCreationMultiForm()
     return render(request,'registration/signup.html',{'form':form})
@@ -87,7 +87,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             return redirect('loginhome')
-        else:
+        else:   
             return render(request, 'registration/login.html', {'error': 'username or password is incorrect'})
     else:
         return render(request, 'registration/login.html')
