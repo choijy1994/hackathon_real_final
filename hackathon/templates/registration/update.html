@@ -1,0 +1,19 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="{% static 'js/app.js' %}"></script>
+</head>
+<body>
+    <h1>글수정하기</h1>
+    <form method="POST" class="post-form"enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="save btn btn-default">수정</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,606 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>boardMain</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+
+    <!-- 부트스트랩 임시 -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+    <style>
+* {
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.all-container {
+    
+    width: 1160px;
+    margin: 0 auto
+}
+
+body {
+    
+    margin: 0;
+    padding: 0;
+    background-size: 100%, 100%;
+    background-repeat: no-repeat;
+    background-image: url('/static/adventure-blur-close-up-346885.jpg');
+}
+
+h1 {
+    
+    border-left: 12px solid #ffcb02;
+    padding-left: 10px;
+    text-transform: uppercase;
+    font-weight: bold
+}
+
+h2 {
+    
+}
+
+span {
+    
+    font-size: 50px;
+    color: #000000
+}
+
+.time h3 {
+    
+    margin-top: 90px
+}
+
+
+h3 {
+    
+    color: #d1d1d1;
+}
+
+.container {
+    height: 10%;
+    width: 100%;
+    float: left;
+    /* background-color: #fff; */
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    margin-top: -160px;
+    text-transform: uppercase;
+    line-height: 24px
+    
+}
+
+.time {
+    
+    width: 10%;
+    float: left;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+    text-align: center;
+}
+
+.details {
+    
+    width: 85%;
+    float: left;
+    border-left: 2px dashed #dadde6;
+    padding-left: 10%;
+    position: relative;
+    
+}
+
+
+.details h3:first-child {
+    
+    margin-bottom: 0
+}
+
+.details h2 {
+    
+    margin-top: 0
+}
+
+.details .circle-top {
+    opacity: 0.9;
+    height: 25px;
+    width: 25px;
+    border-radius: 20px;
+    background-color: #dadde6;
+    position: absolute;
+    left: -13px;
+    top: -16px;
+    
+}
+
+.details .circle-bottom {
+  opacity: 0.9;
+    height: 25px;
+    width: 25px;
+    border-radius: 20px;
+    background-color: #dadde6;
+    position: absolute;
+    bottom: -16px ;
+    left: -13px ;
+    
+}
+
+img {
+    
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    margin-right: 20px
+}
+
+.btn {
+    
+    float: right;
+    text-transform: uppercase;
+    margin: 10px;
+    color: #fff;
+    border: none;
+    padding: 5px 12px 5px 12px; 
+}
+
+.btn-booked {
+    
+    background-color: #0877d0;
+    cursor: pointer
+}
+
+.btn-tickets {
+    
+    background-color: #d1d1d1;
+    outline: none
+    
+}
+
+.btn-tickets:hover {
+    
+    cursor: not-allowed
+}
+
+.btn-canceld {
+    
+    background-color: #ed0000 ;
+    cursor: not-allowed;
+    outline: none
+    
+}
+    </style>
+<style>
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow:auto;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  /* background: linear-gradient(45deg, #cc1f30 0%, #7b3584 100%); */
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+}
+
+.page:after {
+  content: '';
+  display: block;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+body {
+  font-family: Helvetica,Arial,sans-serif;
+}
+
+.demo-box {
+  opacity: 0.9;
+  background: #fff;
+  margin-bottom: 20px;
+  box-shadow: -4px 23px 48px -13px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
+
+.flight-duration {
+  /* margin-top: 20px; */
+  max-width: 430px;
+  margin: 14px auto 0 auto;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 4;
+}
+
+.flight-info {
+  position: relative;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  max-width: 460px;
+  margin-left: 10px;
+  border-collapse: collapse;
+}
+.flight-info:after {
+  content: "";
+  width: 200%;
+  height: 2px;
+  position: absolute;
+  top: 20px;
+  display: block;
+  background: #666;
+  z-index: 0;
+}
+.flight-info .segments {
+  display: table-row;
+  
+}
+.flight-info .segments > div {
+  display: table-cell;
+  text-align: center;
+  position: relative;
+  
+}
+.flight-info .segments .airport {
+  display: block;
+  font-size: 17px;
+  color: rgba(0, 0, 0, 0.4);
+}
+.flight-info .segments .airport:only-child {
+  padding-top: 0;
+  line-height: 20px;
+}
+.flight-info .segments .plane {
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  position: absolute;
+  display: block;
+  left: 100%;
+  transform: translateX(250%);
+  top: 0;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDUwIDI1Ij48cGF0aCBkPSJNNDYuMiwxMS4zYy0wLjktMS43LTMtMi4yLTQuNy0xLjNsLTEwLjcsNi4zbC0xNi02LjZsLTMuNSwyTDIyLDIxLjZMMTIuNiwyN0wyLjIsMjUuM0wwLDI2LjZsOC40LDYuN2wwLDBsMCwwbDAsMGwwLDBjNC44LTAuMyw1LjUtMC40LDgtMC42TDQ0LjksMTZDNDYuNSwxNS4xLDQ3LjEsMTMsNDYuMiwxMS4zeiIgc3R5bGU9ImZpbGw6IHJnYigxMTgsIDExOCwgMTE4KTsiLz48L3N2Zz4=");
+  background-size: 50% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 5;
+}
+.flight-info .segments time {
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 20px;
+}
+.adaptive{
+    position:absolute;
+    left:50%;
+    z-index: 6;
+}
+.flight-info .segments .segment {
+    position:absolute;
+    
+  width: 200px;
+  background: #fff;
+  position: relative;
+  z-index: 3;
+  /* margin:10px;   */
+  padding: 0 8px;
+}
+.flight-info .segments .departure {
+    margin: 10px;
+  padding: 0 8px 0 0;
+}
+.flight-info .segments .destination {
+    margin: 10px;
+    position: absolute;
+    left: 200%;
+    top: -13%;
+  padding: 0 0 0 8px;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .adaptive {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 20em) {
+  .flight-duration {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 15em) {
+  .flight-info:after {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 16em) {
+  .flight-info:after {
+    display: block !important;
+  }
+}
+p .info {
+  position: absolute;
+  bottom: 10px;
+  font-size: 11px;
+}
+
+.please{
+ 
+    justify-content: center;
+  align-items: center;   
+}
+
+.airport{
+  word-break: keep-all;
+}
+.main{
+  margin-bottom: 10px;
+}
+
+</style>
+
+<style>
+
+a{
+  color:black;
+}
+a:hover,
+        a:focus {
+            text-decoration: none;
+            outline: none
+        }
+ul{
+  list-style-type:none;
+  padding:0;
+  margin:0;
+}
+        .pagination-box {
+            text-align: center;
+            margin-top: 150px;
+        }
+
+        .pagination {
+            display: inline-flex;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+        }
+
+        .pagination li a.page-link,
+        .pagination li:first-child a.page-link,
+        .pagination li:last-child a.page-link {
+            border:none;
+            height: 45px;
+            width: 45px;
+            line-height: 35px;
+            border-radius:50%;
+            background-color: transparent;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 1;
+            margin: 0 8px 0 0;
+            transition: all 0.4s ease 0s;
+        }
+
+        .pagination li a.page-link:before,
+        .pagination li:first-child a.page-link:before,
+        .pagination li:last-child a.page-link:before {
+            content:"";
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #fff;
+            border-radius:50%;
+            opacity: 0;
+            transform:scaleY(0);
+            transition:all 0.3s ease 0s;
+        }
+
+        .pagination li a.page-link:hover:before,
+        .pagination li.active a.page-link:before {
+            transform:scaleY(1);
+            opacity: 1;
+        }
+
+        .pagination li:last-child a.page-link {
+            margin-right: 0;
+        }
+
+        .pagination li.active a.page-link,
+        .pagination li a.page-link:hover,
+        .pagination li.active a.page-link:hover {
+            background-color: transparent;
+            color: #fff;
+            border:none;
+        }
+        @media only screen and (max-width: 480px){
+            .pagination{ display: block; }
+            .pagination li{
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+        }
+
+</style>
+
+
+
+<script src="{% static 'js/app.js' %}"></script>
+
+</head>
+
+<body>
+
+    <div class="all-container">
+      <!-- <h1>upcoming gigs</h1>    -->
+      {% for post in posts %}
+      
+      <a href = "{% url 'contents_read' post.id %}">
+      <div class="demo-box">
+        <div class="main">
+          {{post.title}}  {{post.nickname}} / {{post.pub_date}}
+        </div>
+        <div class="please">
+        <div class="flight-info">
+          <div class="segments">
+            
+            <div class="segment departure">
+              <time>{{post.startTime}}
+                  <br>{{post.startDate}}</time>
+              <span class="airport"></span>
+            </div>
+
+            <div class="divider">
+              <span class="plane"></span>
+            </div>
+            <div class="segment adaptive">
+            <span class="airport">{{post.spot}}, {{post.nation}}</span>
+            
+            </div>
+            <div class="divider adaptive"> 
+              <span class="plane"></span>
+            </div>
+            <div class="segment destination">
+              <time>{{post.endTime}} <br> {{post.endDate}}</time>
+              <span class="airport"></span>
+            </div>
+          </div>
+        </div>
+    </div>
+        <div class="flight-duration">희망 동행<br>남:{{post.yourMaleNumber}} / 여:{{post.yourFemaleNumber}}</div>
+      </div>
+      <!-- <p class="info">Adaptive fluid flight info</p> -->
+</a>
+       {%endfor%}
+     </div> 
+
+
+
+
+     <div class="container">
+      <div class="row">
+          <div class="col-md-offset-2 col-md-8">
+              <nav class="pagination-box" aria-label="Page navigation">
+                  <ul class="pagination">
+                      {%if posts.has_previous%}
+
+                      <li class="page-item">
+                          <a href="?page={{posts.previous_page_number}}" class="page-link" tabindex="-1" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                          </a>
+                      </li>
+                      {%endif%}
+
+                      <li class="page-item">
+                          <a class="page-link" href="#">{{posts.number}}</a>
+                      </li>
+                      <li class="page-item">
+                          <a class="page-link" href="#">{{posts.paginator.num_pages}}</a>
+                      </li>
+                      <!-- <li class="page-item">
+                          <a class="page-link" href="#">3</a>
+                      </li>
+                      <li class="page-item">
+                          <a class="page-link" href="#">4</a>
+                      </li>
+                      <li class="page-item">
+                          <a class="page-link" href="#">5</a>
+                      </li> -->
+                      {%if posts.has_next%}
+
+                      <li class="page-item">
+                          <a href="?page={{posts.next_page_number}}" class="page-link" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                          </a>
+                      </li>
+                      {%endif%}
+                  </ul>
+              </nav>
+          </div>
+      </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  <span class="write"><a href = "{% url 'newpost' %}">글쓰기</a></span>
+<!-- 
+    
+
+    <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+            {%if posts.has_previous%}
+              <li class="page-item">
+                <a class="page-link" href="?page={{posts.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+              </li>
+            {%endif%}
+
+              <li class="page-item"><a class="page-link" href="#">{{posts.number}}</a></li>
+              <li class="page-item"><a class="page-link" href="#">/</a></li>
+              <li class="page-item"><a class="page-link" href="#">{{posts.paginator.num_pages}}</a></li>
+              {%if posts.has_next%}
+              <li class="page-item">
+                <a class="page-link" href="?page={{posts.next_page_number}}">Next</a>
+              </li>
+              {%endif%}
+            </ul>
+    </nav>
+
+     -->
+
+<!-- 
+    <div class="myform">
+    <form class="form-inline my-2 my-lg-0" action="{% url 'post_search' %}">
+        <input class="form-control mr-sm-2" type="text" placeholder="" aria-label="Search" name="q">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+    </form>
+    </div> -->
+
+    
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+  
+</body>
+</html>

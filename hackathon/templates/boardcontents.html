@@ -1,0 +1,506 @@
+{% extends "base.html" %}
+{%block main%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        @import url(https://www.markmurray.co/codepen/entypostyle.css);
+@import url(https://fonts.googleapis.com/css?family=Merriweather|Raleway);
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face { font-family: 'WONDotum'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/WONDotum.woff') format('woff'); font-weight: normal; font-style: normal; }
+html, body {
+  background: #e8eaef;
+  max-width: 100%;
+  font-family: 'WONDotum';
+}
+
+
+img {
+  height: auto;
+}
+
+.content {
+  max-width: 800px;
+  margin: 5em auto;
+  font-size: 0.8em;
+  line-height: 2;
+  overflow: hidden;
+  background: rgb(255, 255, 255,0);
+  padding: 0 3em;
+  -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  
+}
+.content img {
+  width: 130%;
+  height: auto;
+  position: relative;
+  left: -3em;
+}
+.content p {
+  margin: 1em 0;
+}
+.content p:first-of-type {
+  text-indent: 2em;
+}
+.content .post {
+  margin-bottom: 2em;
+}
+
+ 
+
+
+
+
+
+/* 여기부터 표 */
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700,900");
+* {
+  box-sizing: border-box;
+}
+*::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  /* background-image: url("https://images.unsplash.com/photo-1483304528321-0674f0040030?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a658ae60843537b1b88478c56f783669&dpr=1&auto=format&fit=crop&w=1600&q=80&cs=tinysrgb"); */
+  /* background-size: cover;
+  background-repeat: no-repeat;
+  position: relative; */
+
+  background: url('https://images.unsplash.com/photo-1483304528321-0674f0040030?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a658ae60843537b1b88478c56f783669&dpr=1&auto=format&fit=crop&w=1600&q=80&cs=tinysrgb') fixed;
+  background-size: cover;
+  /* background-repeat:  */
+  padding: 0;
+  margin: 0;
+  margin-bottom: -80px;
+  margin-top: 0px;
+}
+
+img {
+  height: auto;
+  width: 30px;
+  
+}
+
+
+.ticket {
+  background: #ffffff;
+  border-radius: 4px;
+  color: #0b1521;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  padding: 30px;
+  margin: 80px auto;
+  max-width: 450px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+  
+}
+/* .ticket-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 50px 0;
+  position: relative;
+  
+} */
+
+.ticket-header{
+  margin-bottom: 30px;
+}
+.ticket-header > svg.separator {
+  -webkit-animation: flight 2s infinite;
+          animation: flight 2s infinite;
+  display: block;
+  color: #d3e6f4;
+  height: 30px;
+  position: absolute;
+  top: 23%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 30px;
+}
+.ticket-departure {
+  text-align: left;
+}
+.ticket-destination {
+  text-align: right;
+  margin-top:20px;
+}
+.ticket .city-abbr {
+  color: #3b8acf;
+  font-size: 43px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 50px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.ticket .city-abbrs {
+  color: #3b8acf;
+  font-size: 45px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 50px;
+  margin: 0;
+  text-transform: uppercase;
+  display:inline-block;
+}
+
+.ticket .city-name {
+  color: #aaaaac;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.ticket .item:not(:last-child) {
+  margin-bottom: 20px;
+}
+.ticket .name {
+  color: #aaaaac;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 20px;
+  margin: 0;
+  text-transform: uppercase;
+}
+.ticket .value {
+  color: #000000;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.row-vertical {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.row-vertical > .col {
+  flex: 0;
+}
+.row > .col {
+  flex: 1;
+}
+.row > .col.half {
+  flex-basis: 50%;
+}
+
+
+.ticket-qrcode{
+  width: 100%;
+  height: auto;
+}
+
+/* 버튼 */
+@font-face { font-family: 'BBTreeGR'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGR.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+.material {
+  height: 50px;
+  padding: 10 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: rgb(82, 82, 243);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.35);
+  border: none;
+  -webkit-box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  -moz-box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  /* margin: 25px 0; */
+  margin-left:217px;
+  margin-right:5px;
+  margin-bottom: 35px;
+  display: inline-block;
+  line-height: 0px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  font-family: 'BBTreeGR';
+  box-sizing: border-box;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.material2{
+  height: 50px;
+  width: 90px;
+  padding: 10 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: rgb(82, 82, 243);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.35);
+  border: none;
+  -webkit-box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  -moz-box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  /* margin: 25px 0; */
+  margin-left:0px;
+  margin-right:5px;
+  display: inline-block;
+  line-height: 0px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  font-family: 'BBTreeGR';
+  box-sizing: border-box;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+ 
+}
+
+
+.material.full {
+  width: 100%;
+}
+.material.sm {
+  width: 150px;
+}
+.material.md {
+  width: 200px;
+}
+.material.lg {
+  width: 300px;
+}
+.material .ink {
+  position: absolute;
+  border-radius: 50%;
+  height: 1px;
+  width: 1px;
+  border: 1px solid rgba(13, 71, 161, 0.8);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0.8;
+  box-sizing: border-box;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.material:active, .material:focus {
+  background-color: #c1e0ff;
+  -webkit-box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+  -moz-box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+  box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+  outline: 0;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.material:hover {
+  background-color: #c1e0ff;
+  -webkit-box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  -moz-box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  cursor: pointer;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+
+
+.material2{
+  height: 50px;
+  padding: 10 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: rgb(82, 82, 243);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.295);
+  border: none;
+  -webkit-box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  -moz-box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  /* margin: 25px 0; */
+  margin-left:10px;
+  margin-right:10px;
+  display: inline-block;
+  line-height: 0px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  font-family: 'BBTreeGR';
+  box-sizing: border-box;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+ 
+}
+
+
+.material2.full {
+  width: 100%;
+}
+.material2.sm {
+  width: 150px;
+}
+.material2.md {
+  width: 200px;
+}
+.material2.lg {
+  width: 300px;
+}
+.material2 .ink {
+  position: absolute;
+  border-radius: 50%;
+  height: 1px;
+  width: 1px;
+  border: 1px solid rgba(13, 71, 161, 0.8);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0.8;
+  box-sizing: border-box;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.material2:active, .material2:focus {
+  background-color: #c1e0ff;
+  -webkit-box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+  -moz-box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+  box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+  outline: 0;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.material2:hover {
+  background-color: #c1e0ff;
+  -webkit-box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  -moz-box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  cursor: pointer;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.date{
+  text-align: center;
+}
+
+.date2{
+  color:grey;
+  text-align: right;
+}
+
+
+.line{
+  color: lightgrey;
+}
+
+
+#bb{
+  width: 145px;
+}
+
+#bb2{
+  margin-left: 120px;
+  
+}
+.item,h1{
+  word-break:break-all;
+  word-wrap: break-word;
+}
+
+</style>
+
+</head>
+<body> 
+
+    <div class="ticket" >
+        <div class="date"><h1><{{post.title}}></h1></div>
+        <div class="date2">{{post.pub_date}}</div>
+        <div class="ticket-header" style="clear:both;">
+          <div class="ticket-departure">
+            <h1 class="city-abbr">YHH</h1><span class="city-name">여행해</span>
+          </div>
+          <svg class="separator" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewbox="0 0 510 510" style="enable-background:new 0 0 510 510;" xml:space="preserve">
+            <g id="flights"></g>
+            <path d="M510,255c0-20.4-17.85-38.25-38.25-38.25H331.5L204,12.75h-51l63.75,204H76.5l-38.25-51H0L25.5,255L0,344.25h38.25    l38.25-51h140.25l-63.75,204h51l127.5-204h140.25C492.15,293.25,510,275.4,510,255z" fill="currentColor"></path>
+          </svg>
+          <div class="ticket-destination">
+            <h1 class="city-abbr">{{post.spot}}</h1><span class="city-name">{{post.nation}}</span><br>
+            <div class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </div>
+          </div>
+        </div>
+        <div class="ticket-body">
+          <div class="row">
+            <div class="col item">
+              <h2 class="name">동행인원</h2><span class="value">Company</span>
+            </div>
+            <div class="col item">
+              <h2 class="name">여</h2><span class="value">{{post.yourFemaleNumber}}</span>
+            </div>
+            <div class="col item">
+              <h2 class="name">남</h2><span class="value">{{post.yourMaleNumber}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col half">
+              <div class="row-vertical">
+                <div class="col">
+                  <div class="item">
+                    <h2 class="name">작성자</h2><span class="value">{{post.user.nickname}}</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="item">
+                    <h2 class="name">START~END</h2><span class="value">{{post.startDate}} {{post.startTime}} ~ {{post.endDate}} {{post.endTime}}</span>
+                  </div>
+                </div>
+            
+              </div>
+            </div>
+            <div class="col half"><img class="ticket-qrcode" src="https://1.bp.blogspot.com/-tWxtTHsnBvQ/Wx0E35ydjVI/AAAAAAAAA6w/SxUTG14Kx8ABJkT4_7S18j4W-Sj5a50YACLcBGAs/s1600/qr.png" alt="Ticket Code"/></div>
+            
+            <div class="col">
+              <div class="item">
+                <br>
+                <h2 class="name" id="cc">내용</h2><span class="value">{{post.body}}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class='content'>
+        <div class='post' id='post-1'>
+         
+          {% if user.is_authenticated %}
+            {% if request.user == check %}
+              <button class="material"> <a href = "{% url 'myfriend' post.id %}">동행 신청자 현황</a></button>
+              <button class="material2"><a href = "{% url 'post_update' post.id %}">수정</a></button>
+              <button class="material2"> <a href = "{% url 'post_delete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a></button>
+            {%else%}
+              <button class="material" id="bb2"><a href = "{%url 'apply' post.id%}">동행 신청</a></button>
+              <button class="material2"><a href = "{% url 'add_friend' post.id %}">1:1 대화 신청</a></button>
+              <button class="material2" id="bb"><a href = "#">작성자 프로필 보기</a></button>
+              <button class="material2" id="bb"><a href = "#">작성자 후기 보기</a></button>
+            {% endif %}
+          {% endif %}
+        </div>
+
+
+      </div>
+      
+</body>
+{%endblock%}
+</html>

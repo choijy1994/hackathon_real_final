@@ -1,0 +1,541 @@
+<!-- 글쓰는 페이지 -->
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>newPost</title>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_qkfira9DvMlNCFbYN3bIDGY_Tvn9tG4&libraries=places"
+        async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="{% static 'js/googlemap.js' %}">
+    </script>
+    <script src="{% static 'js/markercluster.js' %}">
+    </script>
+
+    <link rel="stylesheet" href="{% static 'css/googlemap.css' %}">
+
+
+
+
+
+    
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Compiled and minifed jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <style>
+
+            table{
+                        /* border: 4px solid rgba(0, 0, 0, 0); */
+                        margin-left:25px;
+                        margin-right: 25px;
+                        padding:15px;
+                        padding-right: 30px;
+                }
+
+
+
+
+        .button{
+            border-radius: 3px;
+            background-color:beige;
+            font-size: 18px;
+        }
+        .test{
+            width: 3.5cm;
+            margin: 2px 0;
+            padding: 1px 3px;
+            border-width: 2px;
+            align-content: center;
+            border-width: 2px;
+            border-color: black;
+        }
+        #fr{
+            display: flex;
+            justify-content: center;
+        }
+        form{
+            text-align: center;
+        }
+        .btn-wrap {
+   display: flex; 
+   justify-content:center;
+   align-items: center;
+}
+.btn-wrap > a {
+   background-color: #fff; 
+   text-decoration: none;
+   border-radius: 3px;
+   color: rgba(0,0,0,0.7);
+   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+article div {overflow:visible; }
+/* modal */
+#modal {
+   transform: scale(0);
+   position: fixed; left: 0; top: 0;
+   width: 100%; height: 100%;
+}
+#modal .modal-bg {
+   background-color: rgba(0,0,0,0.7);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+}
+#modal .modal-bg .modal-cont {
+   position: relative;
+   background-color: #fff;
+   /* padding: 40px; */
+   width:100%;
+    height: 100%;
+   display: inline-block;
+}
+#modal .modal-bg .modal-cont h2 {
+   font-size: 30px; margin-bottom: 10px;
+}
+#modal .modal-bg .modal-cont p {
+   font-size: 18px; line-height: 1.3;
+}
+#modal .modal-bg .modal-cont .close {
+   position: absolute; top: 10px; right: 10px;
+   background:#000; padding: 10px; 
+   border-radius: 50%;
+}
+#modal .modal-bg .modal-cont .close svg {
+   width: 24px; fill: #fff; vertical-align: top;
+}
+#modal.one {
+   transform: scaley(0.005) scalex(0);
+   animation: unfoldIn 1s cubic-bezier(0.165, 0.85, 0.44, 1) forwards;
+}
+#modal.one.out {
+   transform: scale(1);
+   animation: unfoldOut 1s cubic-bezier(0.165, 0.85, 0.44, 1) forwards;
+}
+@keyframes unfoldIn {
+   0%   {transform: scaley(0.005) scalex(0); }
+   50%  {transform: scaley(0.005) scalex(1); }
+   100% {transform: scaley(1) scalex(1); }
+}
+@keyframes unfoldOut {
+   0%   {transform: scaley(1) scalex(1) }
+   50%  {transform: scaley(0.005) scalex(1); }
+   100% {transform: scaley(0.005) scalex(0); }
+}
+#modal.one .modal-bg .modal-cont {
+   transform: scale(0);
+   animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.85, 0.44, 1) forwards;
+}
+#modal.one.out .modal-bg .modal-cont {
+   transform: scale(0);
+   animation: zoomOut 0.5s cubic-bezier(0.165, 0.85, 0.44, 1) forwards;
+}
+@keyframes zoomIn {
+   0% {transform: scale(0);}
+   100% {transform: scale(1);}
+}
+@keyframes zoomOut {
+   0% {transform: scale(1);}
+   100% {transform: scale(0);}
+}
+    </style>
+<style>
+.c-example .c-button-group--vertical .c-button {
+  margin-bottom: 0;
+}
+/**
+ * Component: Button
+ * --------------------------------------------------
+ */
+.c-button {
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  min-height: 20px;
+  max-width: 100%;
+  padding: 6px 6px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease;
+  text-align: center;
+  vertical-align: middle;
+  white-space: normal;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #434a54;
+  border-radius: 3px;
+  background: #656d78;
+  -webkit-appearance: none;
+}
+.c-button:hover {
+  border-color: #434a54;
+  background-color: #434a54;
+}
+.c-button::-moz-focus-inner {
+  margin: 0;
+  padding: 0;
+}
+.c-button:focus {
+  outline: 1px dotted;
+  outline: 3px auto -webkit-focus-ring-color;
+}
+.c-button:hover,
+.c-button:focus,
+.c-button:active {
+  text-decoration: none;
+}
+.c-button:disabled,
+.c-button.is-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: .65;
+}
+/**
+ * Component: Button
+ * Modifier: Size
+ * --------------------------------------------------
+ */
+.c-button--small {
+  font-size: 12px;
+  line-height: 0px;
+  min-height: 15px;
+  padding: 4px 8px;
+  margin-left: 7px;
+  border-radius: 3px;
+}
+.c-button--outline {
+        color:rgb(37, 78, 243)    ;
+        border-color: rgb(37, 78, 243)   ;
+        background-color: transparent;
+      }
+      
+      .c-button--outline:hover {
+        color: #fff;
+        border-color: #8FCEFF;
+        background-color: #8FCEFF;
+      }
+
+     #lat, #lng{
+        position: absolute;
+        left:150px;
+     } 
+
+     .mmm{
+         margin-top:3px;
+         margin-bottom:30px;
+     }
+
+
+     .nnn{
+         margin-right:40px;
+     }
+</style>
+
+</head>
+<body style="overflow-x:hidden">
+    
+    {% if user.is_authenticated %}
+        <div class="btn-wrap" >
+                <a href="#" class="btn" id="aaa">지도</a>
+        </div>
+        <div id="modal">
+                <div class="modal-bg">
+                    <div class="modal-cont">
+                        <div class="pac-card" id="pac-card">
+                            <div>
+                              <div id="title">
+                                여행하실 지역을 검색해주세요
+                              </div>
+                              <!-- <div id="type-selector" class="pac-controls">
+                                <input type="radio" name="type" id="changetype-all" checked="checked">
+                                <label for="changetype-all">All</label>
+                        
+                                <input type="radio" name="type" id="changetype-establishment">
+                                <label for="changetype-establishment">Establishments</label>
+                        
+                                <input type="radio" name="type" id="changetype-address">
+                                <label for="changetype-address">Addresses</label>
+                        
+                                <input type="radio" name="type" id="changetype-geocode">
+                                <label for="changetype-geocode">Geocodes</label>
+                              </div> -->
+                              <!-- <div id="strict-bounds-selector" class="pac-controls">
+                                <input type="checkbox" id="use-strict-bounds" value="">
+                                <label for="use-strict-bounds">Strict Bounds</label>
+                              </div> -->
+                            </div>
+                            <div id="pac-container">
+                              <input id="pac-input" type="text"
+                                  placeholder="Enter a location">
+                            </div>
+                          </div>
+                          <div id="map"> 
+                          </div>
+                          <div id="infowindow-content">
+                            <img src="" width="16" height="16" id="place-icon">
+                            <span id="place-name"  class="title"></span><br>
+                            <span id="place-address"></span>
+
+                        
+                        <!-- <form class="post-form" method='POST'> -->
+                            <span class="field" id="lat_post"></span>
+                            <span class="field" id="lng_post" maxlength="1000"></span>
+                            <span class="field" id="nation_post" maxlength="1000"></span>
+                            <span class="field" id="attraction_post" ></span>
+                            <span class="field" id="address_post" ></span>
+                            <!-- <a href="#" class="a">Here!</a> -->
+                            <!-- <input type="button" onclick="fill()" value="HERE!"> -->
+                            <button class="c-button c-button--small c-button--outline" onclick="fill()">HERE!</button>
+
+                        <!-- </form> -->
+                        
+                        </div>
+                        
+                        
+                        
+                        
+                        <a href="#" class="close">
+                            <svg viewBox="0 0 24 24">
+                       <path d="M14.1,12L22,4.1c0.6-0.6,0.6-1.5,0-2.1c-0.6-0.6-1.5-0.6-2.1,0L12,9.9L4.1,2C3.5,1.4,2.5,1.4,2,2C1.4,2.5,1.4,3.5,2,4.1
+                L9.9,12L2,19.9c-0.6,0.6-0.6,1.5,0,2.1c0.3,0.3,0.7,0.4,1.1,0.4s0.8-0.1,1.1-0.4l7.9-7.9l7.9,7.9c0.3,0.3,0.7,0.4,1.1,0.4
+                s0.8-0.1,1.1-0.4c0.6-0.6,0.6-1.5,0-2.1L14.1,12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+        </div>
+
+
+
+<form method='POST' action="{% url 'newpost' %}">
+          <div id="fr" >
+            
+            <div style="float: left; width:20%;" class = test><input type="text" id = "nation" name = "nation" value="국가" style="text-align:center;"></div>
+            <div style="float: left; width:20%;" class = test><input type="text" id = "attraction" name = "attraction" value="어트랙션" style="text-align:center;"></div></div>
+            <div id="fr" >
+            <div class = test><input type="text" id = "lat" name = "lat" value="위도" style="text-align:center;"></div>
+            <div class = test><input type="text" id = "lng" name = "lng" value="경도" style="text-align:center;"></div></div>
+         
+      <div id="fr" >
+       
+            <div style="float: left; width:35%; " class = test><input type="text" class="datepicker" name = "startDate" placeholder="출발 날짜 설정" style="text-align:center;" required></div>
+            <div style="float: left; width:35%; " class = test><input type="text" class="timepicker" name = "startTime" placeholder="출발 시간 설정" style="text-align:center;"></div>
+      </div>
+            <div id="fr" >
+            <div style="float: left; width:35%; " class = test><input type="text" class="datepicker" name = "endDate" placeholder="종료 날짜 설정" style="text-align:center;" required></div>
+            <div style="float: left; width:35%; " class = test><input type="text" class="timepicker" name = "endTime" placeholder="종료 시간 설정" style="text-align:center;"></div>
+        </div></div>
+        <div class = test><input type="text" id = "address" name = "address" value="주소" style="text-align:center;"></div>
+    </div>
+
+    
+        
+<div class="nnn">
+{% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+</div>
+      
+        <div class="mmm"><input type="submit" value="작성" class="button"></div>
+</form>
+
+<span class="field" id="nation_home">{{nation}}</span>
+<span class="field" id="lat_home">{{lat}}</span>
+<span class="field" id="lng_home">{{lng}}</span>
+<span class="field" id="address_home">{{address}}</span>
+<span class="field" id="attraction_home"> {{attraction}}</span>
+
+
+{% else %}
+
+
+<script type="text/javascript">
+    alert('로그인이 필요합니다.')
+    window.location.href = '/login';
+  </script>
+{% endif %}
+<script>
+$('.field').hide();
+var nation = document.getElementById("nation_home").innerText;
+var lat = document.getElementById("lat_home").innerText;
+var lng = document.getElementById("lng_home").innerText;
+var address = document.getElementById("address_home").innerText;
+var attraction = document.getElementById("attraction_home").innerText;
+console.log(nation);
+document.getElementById("nation").value = nation;
+document.getElementById("lat").value = parseFloat(lat);
+document.getElementById("lng").value = parseFloat(lng);
+document.getElementById("address").value = address;
+document.getElementById("attraction").value = attraction;
+$(".btn").click(function(){
+   $("#modal").removeClass().addClass("one");
+});
+$(".close").click(function(){
+   $("#modal").addClass("out");
+});
+$(document).ready(function () {
+    // $(".btn").click();
+        });
+ function fill () {
+var nation = document.getElementById("nation_post").value;
+var lat = document.getElementById("lat_post").value;
+var lng = document.getElementById("lng_post").value;
+var address = document.getElementById("address_post").value;
+var attraction = document.getElementById("attraction_post").value;
+console.log(nation);
+document.getElementById("nation").value = nation;
+document.getElementById("lat").value = parseFloat(lat);
+document.getElementById("lng").value = parseFloat(lng);
+document.getElementById("address").value = address;
+document.getElementById("attraction").value = attraction;
+   $("#modal").addClass("out");
+};
+</script>
+
+
+
+
+<script>
+/**
+  * Materialze made by Blake Tarter
+  * Do whatever you want with it.
+  */
+  function materialize(e, button) {
+if (!e || !button) {
+  console.error('Failed to materialize, you need to pass the click event and the element.');
+  return;
+}
+var x = e.offsetX, y = e.offsetY,
+    ink = document.createElement('div'),
+    baseStyle = 'top: ' + y + 'px; left: ' + x + 'px; ',
+    widthStyle = 'border-width: ' +  button.offsetWidth / 1 + 'px; ';
+function createInk() {
+  ink.className = 'ink';
+  ink.setAttribute('style', baseStyle);
+  button.appendChild(ink);
+  requestAnimationFrame(animateToWidth);
+}
+function animateToWidth() {
+  ink.setAttribute('style', baseStyle + widthStyle);
+}
+function startToFade() {
+  ink.setAttribute('style', baseStyle + widthStyle + 'opacity: 0;');
+}
+function removeInk() {
+  button.removeChild(ink);
+}
+requestAnimationFrame(createInk);
+setTimeout(function() {
+  requestAnimationFrame(startToFade);
+}, 350);
+setTimeout(function() {
+  requestAnimationFrame(removeInk);
+}, 650);
+}
+window.onload = function() {
+var materialButtons = document.getElementsByClassName('material'),
+    i, l;
+for (i = 0, l = materialButtons.length; i < l; i++) {
+  materialButtons[i].addEventListener('click', function(e) {
+    materialize(e, e.target);
+  });
+}
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.datepicker');
+            var instances = M.Datepicker.init(elems, options);
+        });
+        // Or with jQuery
+        $(document).ready(function () {
+            $('.datepicker').datepicker();
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.timepicker');
+            var instances = M.Timepicker.init(elems, options);
+          });
+        
+          // Or with jQuery
+        
+          $(document).ready(function(){
+            $('.timepicker').timepicker();
+          });
+    </script>
+
+
+
+<script>
+$('.btn-example').click(function(){
+        var $href = $(this).attr('href');
+        layer_popup($href);
+    });
+    function layer_popup(el){
+        var $el = $(el);        //레이어의 id를 $el 변수에 저장
+        var isDim = $el.prev().hasClass('dimBg');   //dimmed 레이어를 감지하기 위한 boolean 변수
+        isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+        var $elWidth = ~~($el.outerWidth()),
+            $elHeight = ~~($el.outerHeight()),
+            docWidth = $(document).width(),
+            docHeight = $(document).height();
+        // 화면의 중앙에 레이어를 띄운다.
+        if ($elHeight < docHeight || $elWidth < docWidth) {
+            $el.css({
+                marginTop: -$elHeight /2,
+                marginLeft: -$elWidth/2
+            })
+        } else {
+            $el.css({top: 0, left: 0});
+        }
+        $el.find('a.btn-layerClose').click(function(){
+            isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+            return false;
+        });
+        $('.layer .dimBg').click(function(){
+            $('.dim-layer').fadeOut();
+            return false;
+        });
+    }
+    </script>
+
+
+<script>
+$('#lng').hide();
+$('#address').hide();
+$('#lat').hide();
+</script>
+
+
+
+</body>
+</html>

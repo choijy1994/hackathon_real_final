@@ -1,0 +1,90 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>boardMain</title>
+
+    <!-- 부트스트랩 임시 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    <style>
+        .pagenation{
+            text-align: center;
+        }
+        .table-striped{
+            text-align: center;
+            margin: auto;
+        }
+
+        .table-striped th{
+            vertical-align: middle;
+        }
+        .table-striped td{
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    {% if flag %}
+    <script>
+        alert('평가해라')
+    </script>
+    {%endif%}
+    <h1>동행현황</h1>
+    <h1>동행 끝나거나 날짜 안적은 거</h1>
+    {% for key,value in dic1.items%}
+        <h1>{{key.title}}</h1>
+        <h1>{{key.body}}</h1>
+        <h1>{{key.endDate}}</h1>
+        <h1>{{key.endTime}}</h1>
+        
+        {%for v in value%}
+            <h2>{{v.participate.nickname}}</h2>
+            <a href = "{% url 'detail' v.participate.id %}">
+                <input type="button" value = "프로필"></a>
+                <a href = "{% url 'ratingview' v.id %}">
+                <input type="button" value = "후기 보기"></a>
+                <a href = "{% url 'rating' v.id key.id%}">
+                <input type="button" value = "평가하기"></a>
+        {%endfor%}
+        {%for key2,value2 in dic2.items%}
+        
+            {%if key2.title is key.title%}
+            {%for v2 in value2%}
+            <h2>{{v2.participate.nickname}}</h2>
+            <a href = "{% url 'detail' v2.participate.id %}">
+                <input type="button" value = "프로필"></a>
+                <a href = "{% url 'ratingview' v2.participate.id %}">
+                <input type="button" value = "후기 보기"></a>
+            {%endfor%}
+            {%endif%}
+        {%endfor%}
+    {%endfor%}
+    <h1>동행 안 끝난거</h1>
+    {% for key,value in dic3.items%}
+    
+        <h1>{{key.title}}</h1>
+        <h1>{{key.body}}</h1>
+        <h1>{{key.endDate}}</h1>
+        <h1>{{key.endTime}}</h1>
+        
+        {%for v in value%}
+            <h2>{{v.participate.nickname}}</h2>
+            <a href = "{% url 'detail' v.participate.id %}">
+                <input type="button" value = "프로필"></a>
+                <a href = "{% url 'ratingview' v.participate.id %}">
+                <input type="button" value = "후기 보기"></a>
+        {%endfor%}
+    
+    {%endfor%}
+     
+</body>
+</html>

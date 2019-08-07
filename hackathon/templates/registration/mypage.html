@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Lato:400,300,100,700);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", "sans-serif";
+ 
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  
+}
+
+body {
+  height: 100vh;
+  background: url(https://cdn.pixabay.com/photo/2016/11/14/22/18/beach-1824855_960_720.jpg) center center no-repeat;
+  background-size: cover;
+  font-size: 50em;
+}
+
+.container {
+  height: 38em;
+  width: 2em;
+  margin: auto;
+  margin-top: 6em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(255, 255, 255, 0.7);
+  box-shadow: 0 0 8em -1em;
+}
+
+.content {
+  margin: 2em;
+  text-align: center;
+}
+.content .avi {
+  height: 10em;
+  width: 10em;
+  margin: 0 auto;
+  border-radius: 100%;
+  background: url(http://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg);
+  background-size: cover;
+}
+.content h2 {
+  margin-top: 0.5em;
+}
+.content .occ {
+  font-size: 1em;
+  color: gray;
+}
+.content .about {
+  margin-top: 1em;
+  color: #262626;
+  letter-spacing: 0.5px;
+  
+}
+.content a {
+  font-size:1.5em;
+  
+}
+
+
+.content li {
+  font-size: 1.5em;
+  margin:5mm;
+}
+
+
+
+  </style>
+</head>
+<body>
+  
+    {% include 'header.html' %}
+    <div class="container">
+      <div class="content">
+        <div class="avi">
+            
+            
+        </div>
+        <h2>ID : {{ userid }}</h2>
+        <p class="occ">'travel with me' user</p>
+        <p class="about">
+            
+            <li>Name : {{name}}</li>
+            <li>NickName : {%if nickname %} {{nickname}}{%else%}<strong>닉네임을 입력해주세요</strong>{%endif%}</li>
+            <li>Gender : {{gender}}</li>
+            <li>Birth Date : {{birth}}</li>
+            
+            <li>Introduce : {{intro}}</li>
+            <a href="{%url 'update' name%}">Update</a>
+        </p>
+           
+
+        
+      </div>
+      
+    </div>
+  </body>
+</body>
+</html>

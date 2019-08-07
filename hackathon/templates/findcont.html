@@ -1,0 +1,134 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>boardMain</title>
+
+    <script src="{% static 'js/app.js' %}"></script>
+    <!-- 부트스트랩 임시 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+
+        body{
+            /* background-image: url("#");
+            background-repeat: no-repeat; */
+        }
+
+        table{
+            border: 5px solid black;
+        }
+        
+
+        .myform{
+            float:inline-end;
+            position: relative;
+            margin: 0 auto;
+            left: 40%;
+        }
+        .pagenation{
+            text-align: center;
+        }
+        .table-striped{
+            text-align: center;
+            margin: auto;
+        }
+
+        .table-striped th{
+            vertical-align: middle;
+        }
+        .table-striped td{
+            vertical-align: middle;
+        }
+
+        .write{
+            float:inline-end;
+            position: relative;
+            left: 90%;
+            font-size: 20px;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성자</th>
+                <th scope="col">작성일</th>
+                <th scope="col">희망 관광지 및 어트랙션</th>
+                <th scope="col">희망 여행 기간</th>
+                <th scope="col">동행 여부</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <th scope="row" style="vertical-align: middle" >{{post.id}}</th>
+                <td><a href = "{% url 'contents_read' post.id %}">{{post.title}}</a></td>
+                <td>{{post.user.nickname}}</td>
+                <td>{{post.pub_date}}</td>
+                <td>{{post.spot}}</td>
+                <td>{{post.startDate}} {{post.startTime}} ~ <br> {{post.endDate}} {{post.endTime}}</td>
+                <td>YES or NO</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <span class="write"><a href = "{% url 'newpost' %}">글쓰기</a></span>
+
+    <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+            {%if posts.has_previous%}
+              <li class="page-item">
+                <a class="page-link" href="?page={{posts.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+              </li>
+            {%endif%}
+
+              <li class="page-item"><a class="page-link" href="#">{{posts.number}}</a></li>
+              <li class="page-item"><a class="page-link" href="#">/</a></li>
+              <li class="page-item"><a class="page-link" href="#">{{posts.paginator.num_pages}}</a></li>
+              {%if posts.has_next%}
+              <li class="page-item">
+                <a class="page-link" href="?page={{posts.next_page_number}}">Next</a>
+              </li>
+              {%endif%}
+            </ul>
+    </nav>
+
+    
+
+
+    <div class="myform">
+    <form class="form-inline my-2 my-lg-0" action="{% url 'post_search' %}">
+        <input class="form-control mr-sm-2" type="text" placeholder="" aria-label="Search" name="q">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+    </form>
+    </div>
+
+    
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    
+</body>
+</html>

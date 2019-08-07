@@ -1,0 +1,244 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_qkfira9DvMlNCFbYN3bIDGY_Tvn9tG4&libraries=places" async defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="{% static 'js/markercluster.js' %}"></script>
+
+  <link rel="stylesheet" href="{% static 'css/googlemap.css' %}">
+
+
+
+  <style>
+
+      #map {
+        height: 87.5%;
+      }
+      html{
+      overflow: hidden;
+      }
+      .c-example .c-button-group--vertical .c-button {
+        margin-bottom: 0;
+      }
+      
+      /**
+       * Component: Button
+       * --------------------------------------------------
+       */
+      .c-button {
+        font-family: "Open Sans", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        position: relative;
+        display: inline-flex;
+        box-sizing: border-box;
+        min-height: 20px;
+        max-width: 100%;
+        padding: 6px 6px;
+        cursor: pointer;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        transition: background-color .25s ease, border-color .25s ease, color .25s ease;
+        text-align: center;
+        vertical-align: middle;
+        white-space: normal;
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid #434a54;
+        border-radius: 3px;
+        background: #656d78;
+        -webkit-appearance: none;
+      }
+      
+      .c-button:hover {
+        border-color: #434a54;
+        background-color: #434a54;
+      }
+      
+      .c-button::-moz-focus-inner {
+        margin: 0;
+        padding: 0;
+      }
+      
+      .c-button:focus {
+        outline: 1px dotted;
+        outline: 3px auto -webkit-focus-ring-color;
+      }
+      
+      .c-button:hover,
+      .c-button:focus,
+      .c-button:active {
+        text-decoration: none;
+      }
+      
+      .c-button:disabled,
+      .c-button.is-disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        opacity: .65;
+      }
+      
+      /**
+       * Component: Button
+       * Modifier: Size
+       * --------------------------------------------------
+       */
+      .c-button--small {
+        font-size: 12px;
+        line-height: 0px;
+        min-height: 15px;
+        padding: 4px 8px;
+        margin-left: 7px;
+        border-radius: 3px;
+      }
+      
+      .c-button--outline {
+        color:rgb(37, 78, 243)    ;
+        border-color: rgb(37, 78, 243)   ;
+        background-color: transparent;
+      }
+      
+      .c-button--outline:hover {
+        color: #fff;
+        border-color: #8FCEFF;
+        background-color: #8FCEFF;
+      }
+      
+      </style>
+
+
+
+
+
+
+  
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav">
+        <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" id="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'mypage' %}" data-value="#" class="nav-link">{{user.username}}</a></li>
+                {%endif%}
+                <li class="nav-item"><a href="{% url 'select' %}" data-value="#" class="nav-link">동행찾기</a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'logout' %}" data-value="#" class="nav-link">로그아웃</a></li>
+                <li class="nav-item"><a href="{% url 'mypost' %}" data-value="#" class="nav-link">내가쓴글</a></li>
+                {% if Unread > 0 %}
+                <script>
+                alert('new_message');
+                </script>
+                <li class="nav-item"><a href="{% url 'show_friends' %}" data-value="#" class="nav-link"><img src="{% static 'new_message.png' %}" width="50">
+                </a></li> 
+              </div>
+                {% else %}
+              <li class="nav-item"><a href="{% url 'show_friends' %}" data-value="#" class="nav-link"><img src="{% static 'no_message.png' %}" width="50">
+              </a></li> 
+              </div>                        {%endif%} 
+                {% else %}
+                <li class="nav-item"><a href="{% url 'signup' %}" data-value="#" class="nav-link">회원가입</a></li>
+                <li class="nav-item"><a href="{% url 'login' %}" data-value="#" class="nav-link">로그인</a></li>
+                {%endif%}
+                
+                <div class="message_icon">
+                
+                
+            </ul>
+        </div>
+    </nav>
+
+    
+
+    
+    <div class="pac-card" id="pac-card">
+        <div>
+          <div id="title">
+            여행지를 입력해주세요
+          </div>
+          <div id="type-selector" class="pac-controls">
+            <input type="radio" name="type" id="changetype-all" checked="checked">
+            <label for="changetype-all">All</label>
+    
+            <input type="radio" name="type" id="changetype-establishment">
+            <label for="changetype-establishment">Establishments</label>
+    
+            <input type="radio" name="type" id="changetype-address">
+            <label for="changetype-address">Addresses</label>
+    
+            <input type="radio" name="type" id="changetype-geocode">
+            <label for="changetype-geocode">Geocodes</label>
+          </div>
+          <div id="strict-bounds-selector" class="pac-controls">
+            <input type="checkbox" id="use-strict-bounds" value="">
+            <label for="use-strict-bounds">Strict Bounds</label>
+          </div>
+        </div>
+        <div id="pac-container">
+          <input id="pac-input" type="text"
+              placeholder="Enter a location">
+        </div>
+      </div>
+      <div id="map"></div>
+      
+      
+    <form action="{% url 'home_create' %}"  id="infowindow-content">
+       
+            <img src="" width="16" height="16" id="place-icon">
+            <span id="place-name"  class="title"></span><br>
+            <span id="place-address"></span>
+        <input class="field" id="lat_post" name="lat_post">
+        <input class="field" id="lng_post" name="lng_post" maxlength="1000">
+        <input class="field" id="nation_post" name="nation_post" maxlength="1000">
+        <input class="field" id="attraction_post" name="attraction_post">
+        <input class="field" id="address_post" name="address_post">
+        <button class="c-button c-button--small c-button--outline" type="submit" id="btnSubmit">글쓰기</button>
+
+    </form>
+
+  
+<form class="form-inline my-2 my-lg-0" action="{% url 'search_marker' %}" id="marker_content">
+  <div id="address_content" class="title"></div>
+<input class="form-control mr-sm-2" type="hidden" placeholder="" aria-label="Search" name="lat_" id="lat_">
+<input class="form-control mr-sm-2" type="hidden" placeholder="" aria-label="Search" name="lng_" id="lng_">
+<button class="c-button c-button--small c-button--outline" type="submit">FIND!</button>
+
+</form>
+
+
+<script>
+$('.field').hide();
+</script>
+  <script src="{% static 'js/googlemap.js' %}"></script>
+
+</body>
+
+
+
+
+
+</html>
+
+  

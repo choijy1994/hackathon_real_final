@@ -1,0 +1,70 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
+  <meta charset="utf-8">
+  <title>Marker Clustering</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_qkfira9DvMlNCFbYN3bIDGY_Tvn9tG4&libraries=places"
+    async defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="{% static 'js/googlemap.js' %}">
+  </script>
+  <script src="{% static 'js/markercluster.js' %}">
+  </script>
+
+  <link rel="stylesheet" href="{% static 'css/googlemap.css' %}">
+</head>
+
+<body>
+  <div class="pac-card" id="pac-card">
+    <div>
+      <div id="title">
+        Autocomplete search
+      </div>
+      <div id="type-selector" class="pac-controls">
+        <input type="radio" name="type" id="changetype-all" checked="checked">
+        <label for="changetype-all">All</label>
+
+        <input type="radio" name="type" id="changetype-establishment">
+        <label for="changetype-establishment">Establishments</label>
+
+        <input type="radio" name="type" id="changetype-address">
+        <label for="changetype-address">Addresses</label>
+
+        <input type="radio" name="type" id="changetype-geocode">
+        <label for="changetype-geocode">Geocodes</label>
+      </div>
+      <div id="strict-bounds-selector" class="pac-controls">
+        <input type="checkbox" id="use-strict-bounds" value="">
+        <label for="use-strict-bounds">Strict Bounds</label>
+      </div>
+    </div>
+    <div id="pac-container">
+      <input id="pac-input" type="text"
+          placeholder="Enter a location">
+    </div>
+  </div>
+  <div id="map"></div>
+  <div id="infowindow-content">
+    <img src="" width="16" height="16" id="place-icon">
+    <span id="place-name"  class="title"></span><br>
+    <span id="place-address"></span>
+    <br>
+
+<form action="{% url 'newpost' %}" class="post-form" method='POST'>
+    <input class="field" id="lat" />
+    <input class="field" id="lng" maxlength="1000"/>
+    <input class="field" id="nation" maxlength="1000"/>
+    <input class="field" id="attraction" />
+    <input class="field" id="address" />
+    <input type="submit" value="글쓰기">
+</form>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="{% static 'js/app.js' %}"></script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+ 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav">
+        <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" id="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'mypage' %}" data-value="#" class="nav-link">{{user.username}}</a></li>
+                {%endif%}
+                <li class="nav-item"><a href="{% url 'select' %}" data-value="#" class="nav-link">동행찾기</a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'logout' %}" data-value="#" class="nav-link">로그아웃</a></li>
+                <li class="nav-item"><a href="{% url 'mypost' %}" data-value="#" class="nav-link">내가쓴글</a></li>
+                {% if Unread > 0 %}
+               
+                <li class="nav-item"><a href="{% url 'show_friends' %}" data-value="#" class="nav-link"><img src="{% static 'new_message.png' %}" width="50">
+                </a></li> 
+              </div>
+                {% else %}
+              <li class="nav-item"><a href="{% url 'show_friends' %}" data-value="#" class="nav-link"><img src="{% static 'no_message.png' %}" width="50">
+              </a></li> 
+              </div>
+                {%endif%} 
+                {% else %}
+                <li class="nav-item"><a href="{% url 'signup' %}" data-value="#" class="nav-link">회원가입</a></li>
+                <li class="nav-item"><a href="{% url 'login' %}" data-value="#" class="nav-link">로그인</a></li>
+                {%endif%}
+                
+                <div class="message_icon">
+                
+                
+            </ul>
+        </div>
+    </nav>
+    
+
+    {% block content %}
+    <h2>My Page</h2>
+
+    <p>ID : {{ userid }}</p>
+    <p><img src="{% if image %} {{image.url}}{%else%} {%static 'default.jpg' %} {% endif %}"alt="사진오류" width="200" height="300"/></p> 
+    <br>
+    <p>Name : {{name}}</p>
+    <p>NickName : {%if nickname %} {{nickname}}{%else%}<strong>닉네임을 입력해주세요</strong>{%endif%}</p>
+    <p>Gender : {{gender}}</p>
+    <p>Birth Date : {{birth}}</p>
+    <br>
+    <p>Introduce : {%if intro %} {{intro}}{%else%}<strong>자기소개가 없습니다.자기소개를 입력해주세요</strong>{%endif%}</p>
+    
+    
+    <!-- {% if editable %}<a href="{%url 'update' user.username %}">프로필 수정</a> {%else%}수정 권한이 없습니다.{%endif%} -->
+    {%endblock%}    
+</body>
+</html>

@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>탈퇴하기</h1>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- {{form.as_p}} -->
+        <p>비밀번호 다시 입력</p> 
+        {% csrf_token %}
+        password:
+        <input name='currentPassword' type="password">
+        <br>
+        </form>
+        <button type="submit" class="save btn btn-default">OK</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,105 @@
+
+    {% extends "base.html" %}
+    {% load staticfiles %}
+        
+    {% block title %}Log In{% endblock %}
+        
+    {% block head %}
+        <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css"/>
+    {% endblock %}
+ 
+ 
+    {% block main %}  
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>BoardEdit</title>
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!--Compiled and minifed jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="{% static 'js/app.js' %}"></script>
+
+        <style>
+                @font-face { font-family: 'yg-jalnan'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff'); font-weight: normal; font-style: normal; }
+                .post-form{
+                        text-align: center;
+
+                }
+        
+                .post-form{
+                        border: 4px solid rgba(0, 0, 0, 0.774);
+                        margin:10px;
+                        padding:15px;
+                }
+
+                .test{
+                        font-family: 'yg-jalnan';
+                }
+
+
+                .btn{
+                        margin-bottom:20px;
+                }
+
+                h1{
+                        text-align: center;
+                }
+        </style>
+</head>
+
+<body>
+
+        <h1>글 수정하기</h1>
+
+        <form method="POST" class="post-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                
+                <div class=test>출발 날짜 설정<input type="text" class="datepicker" name="startDate" value="출발 날짜 설정"
+                                style="text-align:center;"> 출발 시간 설정 </div>
+                <div class=test><input type="text" class="timepicker" name="startTime" value="출발 시간 설정"
+                                style="text-align:center;">종료 날짜 설정</div>
+                <div class=test><input type="text" class="datepicker" name="endDate" value="종료 날짜 설정"
+                                style="text-align:center;">종료 시간 설정</div>
+                <div class=test><input type="text" class="timepicker" name="endTime" value="종료 시간 설정"
+                                style="text-align:center;"></div>
+                <button type="submit" class="save btn btn-default">수정</button>
+        </form>
+
+        <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                        var elems = document.querySelectorAll('.datepicker');
+                        var instances = M.Datepicker.init(elems, options);
+                });
+
+                // Or with jQuery
+
+                $(document).ready(function () {
+                        $('.datepicker').datepicker();
+                });
+        </script>
+        <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                        var elems = document.querySelectorAll('.timepicker');
+                        var instances = M.Timepicker.init(elems, options);
+                });
+
+                // Or with jQuery
+
+                $(document).ready(function () {
+                        $('.timepicker').timepicker();
+                });
+        </script>
+</body>
+{%endblock%}
+
+</html>

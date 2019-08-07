@@ -1,0 +1,92 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>네브바</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+
+      #logo{
+        width: 40%;
+        height: 40%;
+      }
+        @font-face { font-family: 'BMJUA'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff'); font-weight: normal; font-style: normal; }
+  
+        * {
+    margin: 0;
+  }
+  
+  html, body {
+    font-family: 'BMJUA';
+  }
+  
+  nav{
+    margin: 0px;
+  }
+
+  nav li{
+    padding: 10px;
+  }
+
+  nav a{
+    letter-spacing: 3px;
+  }
+
+  
+    </style>
+
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav">
+        <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" id="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'mypage' %}" data-value="#" class="nav-link">{{user.username}}</a></li>
+                {%endif%}
+                <li class="nav-item"><a href="{% url 'select' %}" data-value="#" class="nav-link">동행찾기</a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'logout' %}" data-value="#" class="nav-link">로그아웃</a></li>
+                <li class="nav-item"><a href="{% url 'mypost' %}" data-value="#" class="nav-link">내가쓴글</a></li>
+                {% if Unread > 0 %}
+               
+                <li class="nav-item"><a href="{% url 'show_friends' %}" data-value="#" class="nav-link"><img src="{% static 'new_message.png' %}" width="20">
+                </a></li> 
+              </div>
+                {% else %}
+              <li class="nav-item"><a href="{% url 'show_friends' %}" data-value="#" class="nav-link"><img src="{% static 'no_message.png' %}" width="20">
+              </a></li> 
+              </div>
+                {%endif%} 
+                {% else %}
+                <li class="nav-item"><a href="{% url 'signup' %}" data-value="#" class="nav-link">회원가입</a></li>
+                <li class="nav-item"><a href="{% url 'login' %}" data-value="#" class="nav-link">로그인</a></li>
+                {%endif%}
+                
+                <div class="message_icon">
+                
+                
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+
+</body>
+</html>
+

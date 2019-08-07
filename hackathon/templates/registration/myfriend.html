@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    
+
+    
+/* Effective styles (to make it work) */
+html{
+  background:url(https://s.cdpn.io/21555/nz2.jpg);
+  position: relative;
+  background-size: cover;
+  background-attachment: fixed;  
+}
+.content{
+  background: white url(https://s.cdpn.io/21555/nzblurred.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  position:relative;
+}
+
+
+
+/* Aesthetic styles */
+html, body{margin:0px; padding:0px;font-family:sans-serif;}
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body{padding:5%;}
+.content{
+  padding:3% 5%;
+  margin-bottom:1%;
+  box-shadow:0px 2px 2px rgba(0,0,0,0.1);
+  border-radius:3px;
+  color:#fff; 
+  border-top:1px solid rgba(255,255,255,0.15);
+  text-shadow: 0px 1px 0px rgba(0,0,0,0.15);
+  
+}
+.content:after{
+  content:' ';
+  background:rgba(255,255,255,0.15);
+  width:100%;
+  height:100%;
+  display:block;
+  position: absolute;
+  top:0px;
+  left:0px;
+  border-radius:3px;
+  z-index:1;
+}
+h2 {
+    padding: 0%;
+    margin:0%;
+}
+.content *{z-index:2;position:relative;}
+.col-1-2{width:49.5%;float:left;}
+.col-1-2 + .col-1-2{margin-left:1%;}
+.clear{clear:both;}
+@font-face { font-family: 'KimNamyun'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KimNamyun.woff') format('woff'); font-weight: normal; font-style: normal; }
+h1{font-family: 'KimNamyun'; font-weight:100; font-size:48px; color:black }
+h2{font-family: 'KimNamyun'; font-weight:100; font-size:28px; color:black}
+p{font-family: 'Marmelad', sans-serif;}
+
+@font-face { font-family: 'BBTreeGR'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGR.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+.material {
+  height: 30px;
+  padding: 10 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: rgb(82, 82, 243);
+  border-radius: 10px;
+  background-color: white;
+  border: none;
+  -webkit-box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  -moz-box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  margin: 25px 0;
+  display: inline-block;
+  line-height: 0px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  font-family: 'BBTreeGR';
+  box-sizing: border-box;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.material.full {
+  width: 100%;
+}
+.material.sm {
+  width: 150px;
+}
+.material.md {
+  width: 200px;
+}
+.material.lg {
+  width: 300px;
+}
+.material .ink {
+  position: absolute;
+  border-radius: 50%;
+  height: 1px;
+  width: 1px;
+  border: 1px solid rgba(13, 71, 161, 0.8);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0.8;
+  box-sizing: border-box;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.material:active, .material:focus {
+  background-color: #c1e0ff;
+  -webkit-box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+  -moz-box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+  box-shadow: 0px 4px 3px 0px rgba(50, 50, 50, 0.2);
+  outline: 0;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.material:hover {
+  background-color: #c1e0ff;
+  -webkit-box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  -moz-box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  cursor: pointer;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+
+
+    
+    </style>
+</head>
+<body>
+        <link href='https://fonts.googleapis.com/css?family=Cherry+Swash:700,400|Marmelad' rel='stylesheet' type='text/css'>
+
+      
+        <div class="content col-1-2">
+          <h1>동행 신청자 <i class="fa fa-user" aria-hidden="true"></i></i></h1> 
+          
+                {% for appli in applicant%}
+                <h2><li>{{appli.apply.nickname}}</li></h2>
+            
+
+            <a href = "{% url 'approve' appli.apply.id post.id%}">
+                    <button class="material ghost"><strong>수락하기</strong></button></a>
+                    <a href = "{% url 'deny' appli.apply.id post.id%}">
+                    <button class="material ghost"><strong>거절하기</strong></button></a>
+                    <a href = "{% url 'detail' appli.apply.id %}">
+                    <button class="material ghost"><strong>프로필</strong></button></a>
+                    <a href = "{% url 'ratingview' appli.apply.id %}">
+                    <button class="material ghost"><strong>후기보기</strong></button></a>
+                        
+                        
+                {%endfor%}
+            
+        </div>
+        <div class="content col-1-2">
+          <h1>동행 확정자 <i class="fa fa-users" aria-hidden="true"></i></h1>
+        
+          <p> {%for parti in participant%}
+                <h2><li>{{parti.participate.nickname}}</li></h2>
+                <a href = "{% url 'cancel' parti.participate.id post.id%}">
+                 <button class="material ghost"><strong>동행 취소하기</strong></button></a>
+                <a href = "{% url 'detail' parti.participate.id %}">
+                        <button class="material ghost"><strong>프로필</strong></button></a>
+                <a href = "{% url 'ratingview' parti.participate.id %}">
+                <button class="material ghost"><strong>후기보기</strong></button></a>
+               </p>
+        </div>    
+                {%endfor%}
+         
+
+                <br><br>
+                <a href = "{% url 'confirm' post.id%}">
+                    <button class="material ghost">
+                        <input type = "button" value="동행 인원 확정" onclick="return confirm('동행 인원 확정하시겠습니까?')"></a>
+                    </button>
+            
+           
+        
+        
+       
+</body>
+</html>

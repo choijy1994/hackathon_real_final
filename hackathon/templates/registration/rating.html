@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{%block main%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="{% static 'js/app.js' %}"></script>
+    
+    <style>
+    
+    @font-face { font-family: 'yg-jalnan'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff'); font-weight: normal; font-style: normal; }
+   
+    /* <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800,800i&amp;subset=latin-ext" >
+    <link rel="stylesheet" href="./css/normalize.css"> 
+    <link rel="stylesheet" href="./css/style.css"> */
+
+
+    .main{
+        font-family: 'yg-jalnan'
+    }
+
+
+form input[type="submit"] {
+  width: 18%;
+  background: skyblue;
+  border: 0;
+  padding: 7px;
+  color: #FFFFFF;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 16px;
+  outline: 0;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  transition: background-color 0.5s ease;
+  background-color: #16a085;
+}
+
+
+input[type=text]{
+    width:18%;
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin:8px 0;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+  }
+  
+  input[type=text]:focus{
+    border-color:rgb(30, 144, 255, 0);
+    /* box-shadow:0 0 8px 0 dodgerBlue; */
+  }
+
+
+
+  .form-box {
+  width: 459px;
+  height: 493px;
+  padding: 20px 55px;
+  border: 2px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  /* background-color: rgb(0, 255, 255, 0.8); */
+  }
+
+
+
+/* 여기부터 */
+
+
+  html {
+  height:100%;
+  width:100%;
+  
+}
+
+.form {
+   width:100%;
+   float:left;
+   padding-top:0px;
+}
+
+.form-box {
+   background-color:rgba(253, 253, 253, 0.2);
+    
+   padding-left:35px;
+   padding-right:35px;
+   padding-top:10px;
+   padding-bottom:48px;
+   width: 530px;
+   float: left;
+   left: 50%;
+   position: absolute;
+  margin-top:30px;
+  margin-bottom: 50px;
+   margin-left: -260px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+
+
+/* 여기 */
+
+body{
+    background: url(https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat center top/cover;
+   padding-bottom: 300px;      
+}
+
+
+h1{
+   text-align: center;
+   font-size:30px;
+   color: #fff;
+   font-weight: bold;
+   padding-top: 50px;   
+}
+
+/* .talkbubble {
+  position: relative;
+  width: 460px;
+  height: 300px;
+  
+  padding: 10px;
+  border-radius: 5px;
+  border: solid rgba(89, 182, 224, 0.5);
+
+  background: rgba(64, 155, 185, 0);
+} */
+
+
+/* .talkbubble textarea {
+  position: inherit;
+  width: inherit;
+  height: inherit;
+  background: inherit;
+  
+  margin: 0;
+  padding: 0;
+  
+  border: none;
+  resize: none;
+} */
+
+
+
+
+
+    </style>
+
+</head>
+
+
+<body>
+   
+
+    
+             
+    <div class="main">
+    {%block content %}
+        <h1>내 동행에게 후기를 남겨보세요 !</h1>
+ <div class="form-box">
+        <p id="line"></p>
+
+        <form method="POST" enctype="multipart/form-data">
+           
+            {% csrf_token %}
+            내 동행의 점수는?
+            <br>
+            <input type="text" name="star" type="number" placeholder="1-5숫자만">
+            <br>
+            후기
+            <br>
+            
+            <div class="talkbubble">
+            <textarea name="contents" cols="40" rows="20" placeholder="후기를 입력해보세요"></textarea></div>
+             
+            <input type="submit" class="btn btn-primary" value="ok">
+
+        </form>
+    </div>
+    </div>
+    {% endblock %}
+    
+</div>
+</body>
+{%endblock%}
+</html>
