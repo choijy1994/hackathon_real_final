@@ -14,11 +14,21 @@ class SignupForm(forms.ModelForm):
     class Meta:
         model=Signup
         fields=('name','nickname','birth','gender','phone', 'image','intro')
+        labels = {
+            'name': ('사용자이름'),
+            'nickname': ('닉네임'),
+            'birth':('생년월일'),
+            'gender':('성별'),
+            'phone': ('핸드폰번호'),
+            'image':('프로필 사진'),
+            'intro':('자기소개'),    
+        }
         widgets={
             'birth': DateInput(),
         }
 
 class UserCreationMultiForm(MultiForm):
+    labels={ 'username': ('사용자 아이디')}
     form_classes = {
         'User':UserCreationForm,
         'signup':SignupForm,

@@ -27,7 +27,7 @@ urlpatterns = [
     path('s_america/', s_america, name="s_america"),
     path('n_america/', n_america, name="n_america"),
     path('aust/', aust, name="aust"),
-    path('nations/<int:pk>', get_nation, name="get_nation"),
+    path('nations/<str:name>', get_nation, name="get_nation"),
     path('search_marker/', search_marker, name="search_marker"),
     path('home_create/', home_create, name="home_create"),
 

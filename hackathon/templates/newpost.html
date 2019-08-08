@@ -1,4 +1,6 @@
 <!-- 글쓰는 페이지 -->
+{% extends "base.html" %}
+{%block main%}
 {% load staticfiles %}
 
 <!DOCTYPE html>
@@ -71,11 +73,15 @@
    align-items: center;
 }
 .btn-wrap > a {
+    align-items: center;
+    width: 150px;
    background-color: #fff; 
    text-decoration: none;
    border-radius: 3px;
    color: rgba(0,0,0,0.7);
    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+   position: relative;
+   left:-150px;
 }
 article div {overflow:visible; }
 /* modal */
@@ -239,17 +245,219 @@ article div {overflow:visible; }
      .mmm{
          margin-top:3px;
          margin-bottom:30px;
+         margin-left:720px;
      }
 
 
      .nnn{
          margin-right:40px;
      }
+
+
+
+
+     .section {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-items: center;
+  align-items: center;
+  background: white;
+  /* background: linear-gradient(to right, #55EFCB, #5BCAFF); */
+}
+
+.section--menu {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu {
+  line-height: 1;
+}
+
+body {
+  /* font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif; */
+  font-family: 'Open Sans', sans-serif;
+  color: #444;
+  /* background: #fff; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  outline: none;
+  
+}
+
+/* a:hover, */
+/* a:focus {
+  color: #f48b95;
+} */
+
+.menu__list {
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu__item {
+  display: block;
+  margin: 1em 0;
+  text-transform: uppercase;
+  
+}
+
+.menu__link {
+  font-size: 1.05em;
+  font-weight: bold;
+  display: block;
+  padding: 1em;
+  cursor: pointer;
+  letter-spacing: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  
+  
+  
+}
+
+
+#aaa{
+  margin-left:300px;
+}
+
+
+.menu__link:hover,
+.menu__link:focus {
+  outline: none;
+}
+
+.menu--style1 .menu__item {
+  position: relative;
+  margin: 1em;
+}
+
+.menu--style1 .menu__link {
+  position: relative;
+  display: block;
+  text-align: center;
+  color: black;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+.menu--style1 .menu__link:hover,
+.menu--style1 .menu__link:focus {
+  color: #2098cc;
+}
+
+.menu--style1 .menu__item--current .menu__link {
+  color: #2098d1;
+}
+
+/* .menu--style1 .menu__item::before, */
+/* .menu--style1 .menu__item::after, */
+.menu--style1 .menu__link::before,
+.menu--style1 .menu__link::after {
+  content: '';
+  position: absolute;
+  background: #2098d1;
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  -webkit-transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.menu--style1 .menu__item::before,
+.menu--style1 .menu__item::after {
+  top: 0;
+  width: 3px;
+  height: 100%;
+  -webkit-transform: scale3d(1, 0, 1);
+  transform: scale3d(1, 0, 1);
+}
+
+.menu--style1 .menu__item::before {
+  left: 0;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+}
+
+.menu--style1 .menu__item::after {
+  right: 0;
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+}
+
+.menu--style1 .menu__link::before,
+.menu--style1 .menu__link::after {
+  left: 0;
+  width: 100%;
+  height: 3px;
+  -webkit-transform: scale3d(0, 1, 1);
+  transform: scale3d(0, 1, 1);
+}
+
+.menu--style1 .menu__link::before {
+  top: 0;
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+}
+
+.menu--style1 .menu__link::after {
+  bottom: 0;
+  -webkit-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+}
+
+.menu--style1 .menu__item--current::before,
+.menu--style1 .menu__item--current::after,
+.menu--style1 .menu__item--current .menu__link::before,
+.menu--style1 .menu__item--current .menu__link::after {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+}
+
+h2 {
+  text-align: center;
+}
+
+nav{
+                        background-color:white; 
+                }
+
+                .menu--style1{
+                height: 92px;
+                margin-top: -13px;
+                padding-top: 6px;
+              }
+
+   
+#logo2{
+  position: absolute;
+  top:15px;
+  left:80px;
+  width:180px;
+  height:75px;
+  transform: rotate(3deg);
+}
 </style>
 
 </head>
 <body style="overflow-x:hidden">
-    
+    <a href="{% url 'main' %}" data-value="#" ><img src="{% static 'logo4.png' %}" id="logo2" >
+    </a>
     {% if user.is_authenticated %}
         <div class="btn-wrap" >
                 <a href="#" class="btn" id="aaa">지도</a>
@@ -538,4 +746,5 @@ $('#lat').hide();
 
 
 </body>
+{%endblock%}
 </html>

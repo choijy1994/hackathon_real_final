@@ -64,9 +64,9 @@ h2 {
 .col-1-2{width:49.5%;float:left;}
 .col-1-2 + .col-1-2{margin-left:1%;}
 .clear{clear:both;}
-@font-face { font-family: 'KimNamyun'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KimNamyun.woff') format('woff'); font-weight: normal; font-style: normal; }
-h1{font-family: 'KimNamyun'; font-weight:100; font-size:48px; color:black }
-h2{font-family: 'KimNamyun'; font-weight:100; font-size:28px; color:black}
+@font-face { font-family: 'NanumBarunGothic'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot'); src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype'); } @font-face { font-family: 'NanumBarunGothic'; font-style: normal; font-weight: 700; src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot'); src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf') format('truetype') } @font-face { font-family: 'NanumBarunGothic'; font-style: normal; font-weight: 300; src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot'); src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf') format('truetype'); } .nanumbarungothic * { font-family: 'NanumBarunGothic', sans-serif; }
+h1{font-family: 'NanumBarunGothic'; font-weight:100; font-size:40px; color:black }
+h2{font-family: 'NanumBarunGothic'; font-weight:100; font-size:22px; color:black}
 p{font-family: 'Marmelad', sans-serif;}
 
 @font-face { font-family: 'BBTreeGR'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGR.woff') format('woff'); font-weight: normal; font-style: normal; }
@@ -94,6 +94,42 @@ p{font-family: 'Marmelad', sans-serif;}
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
 }
+
+.material-ghost2 {
+  height: 35px;
+  padding: 10 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 10px;
+  background-color: rgb(35, 119, 245);
+  border: none;
+  -webkit-box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  -moz-box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  box-shadow: 0px 10px 3px 0px rgba(50, 50, 50, 0.1);
+  margin: 25px 0;
+  display: inline-block;
+  line-height: 0px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  font-family: 'BBTreeGR';
+  box-sizing: border-box;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  
+}
+
+.material-ghost2:hover {
+  background-color: #c1e0ff;
+  -webkit-box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  -moz-box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
+  cursor: pointer;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
 .material.full {
   width: 100%;
 }
@@ -179,16 +215,20 @@ p{font-family: 'Marmelad', sans-serif;}
                         <button class="material ghost"><strong>프로필</strong></button></a>
                 <a href = "{% url 'ratingview' parti.participate.id %}">
                 <button class="material ghost"><strong>후기보기</strong></button></a>
-               </p>
-        </div>    
-                {%endfor%}
-         
+                {%endfor%} 
+              </p>
+               
+               <a href = "{% url 'confirm' post.id%}">
+                  <button class="material-ghost2" onclick="return confirm('동행 인원 확정하시겠습니까?')"><strong>동행 인원 확정</strong></button>
+                  
+                </div>    
+                
+                
 
                 <br><br>
-                <a href = "{% url 'confirm' post.id%}">
-                    <button class="material ghost">
-                        <input type = "button" value="동행 인원 확정" onclick="return confirm('동행 인원 확정하시겠습니까?')"></a>
-                    </button>
+               
+                        <!-- <input type = "button" value="동행 인원 확정" onclick="return confirm('동행 인원 확정하시겠습니까?')"></a> -->
+                    
             
            
         

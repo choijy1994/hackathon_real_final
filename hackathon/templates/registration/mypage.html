@@ -1,3 +1,4 @@
+{%load staticfiles%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,8 +31,8 @@ body {
   height: 38em;
   width: 2em;
   margin: auto;
-  margin-top: 6em;
-  position: absolute;
+  margin-top: 3em;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -41,6 +42,8 @@ body {
 }
 
 .content {
+    position:relative;
+    top:0%;
   margin: 2em;
   text-align: center;
 }
@@ -49,7 +52,6 @@ body {
   width: 10em;
   margin: 0 auto;
   border-radius: 100%;
-  background: url(http://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg);
   background-size: cover;
 }
 .content h2 {
@@ -67,7 +69,7 @@ body {
 }
 .content a {
   font-size:1.5em;
-  
+  color:blue;
 }
 
 
@@ -76,8 +78,6 @@ body {
   margin:5mm;
 }
 
-
-
   </style>
 </head>
 <body>
@@ -85,10 +85,10 @@ body {
     {% include 'header.html' %}
     <div class="container">
       <div class="content">
-        <div class="avi">
+        <!-- <div class="avi"> -->
+        <img class="avi" src="{% if image %} {{image}}{%else%} {%static 'default.jpg' %} {% endif %}"alt="사진오류" />
             
-            
-        </div>
+        <!-- </div> -->
         <h2>ID : {{ userid }}</h2>
         <p class="occ">'travel with me' user</p>
         <p class="about">

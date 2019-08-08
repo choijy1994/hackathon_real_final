@@ -15,8 +15,6 @@ class Post(models.Model):
     body = models.TextField()
     nation = models.CharField(max_length=100)
     spot = models.CharField(max_length=100)
-    ourMaleNumber = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(20)])
-    ourFemaleNumber = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(20)])
     yourMaleNumber = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(20)])
     yourFemaleNumber = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(20)])
     startDate = models.CharField(max_length=30)

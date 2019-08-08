@@ -1,3 +1,4 @@
+{%load staticfiles%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,18 +75,92 @@ a {
   line-height: 2;
 }
 
+.info{
+  width: 100%;
+  background-color: #00ab66;
+}
+
+.info .inner-info{
+  padding: 50px 0px;
+  width: 65%;
+  margin: 0 auto;
+}
+
+.info .inner-info h2{
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  padding-bottom: 15px;
+}
+
+.info .inner-info .boxes{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info .inner-info .boxes .box{
+  width: 24%;
+  height: auto;
+  background: #efefef;
+}
+
+.info .inner-info .boxes .box .cnt{
+  width: 100%;
+  text-align: center;
+  padding: 10px 0px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.box .img{
+  width: 100%;
+  height: 100%;
+}
+
+.box .img img{
+  width: 100%;
+}
+
+.box .cty{
+  width: 100%;
+  text-align: center;
+  padding: 10px 0px;
+  font-family: 'Open Sans', sans-serif;
+}
+
     
     </style>
 
 </head>
 
 
-    <main role="main">
-            {% for n in n_america %}
-        <section>
-            <button role="button"><a href="{% url 'get_nation' n.pk %}">{{n.name}}</a></button>
-        </section>
-        {%endfor%}
-    </main>
-
+    <section class="info">
+        <div class="inner-info">
+          <h2>북아메리카</h2>
+          
+          <div class="boxes">
+            
+            <div class="box">
+              <div class="cnt">미국</div>
+              <a href="{% url 'get_nation' name='미국' %}">
+              <div class="img"><img src="{%static 'america.jpg'%}"></div>
+            </a>
+            </div>
+            <div class="box">
+                <div class="cnt">멕시코</div>
+                <a href="{% url 'get_nation' name='멕시코' %}">
+                <div class="img"><img src="{%static 'mexico.jpg'%}"></div>
+              </a>
+              </div>
+            <div class="box">
+                <div class="cnt">캐나다</div>
+                <a href="{% url 'get_nation' name='캐나다' %}">
+                <div class="img"><img src="{%static 'canada.jpg'%}"></div>
+              </a>
+            </div>
+        </div>
+        
+      </section>
 </html>

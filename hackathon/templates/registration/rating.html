@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{%load staticfiles%}
 {%block main%}
 <!DOCTYPE html>
 <html lang="en">
@@ -178,15 +178,15 @@ h1{
             {% csrf_token %}
             내 동행의 점수는?
             <br>
-            <input type="text" name="star" type="number" placeholder="1-5숫자만">
+            <input type="text" name="star" type="number" placeholder="1-5숫자만" required>
             <br>
             후기
             <br>
             
             <div class="talkbubble">
-            <textarea name="contents" cols="40" rows="20" placeholder="후기를 입력해보세요"></textarea></div>
+            <textarea name="contents" cols="40" rows="20" placeholder="후기를 입력해보세요" required></textarea></div>
              
-            <input type="submit" class="btn btn-primary" value="ok">
+            <input type="submit" class="btn btn-primary" value="ok" onclick="alert('후기가 저장되었습니다.');">
 
         </form>
     </div>

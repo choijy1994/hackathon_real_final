@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{%block main%}
+
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="ko">
@@ -11,14 +14,12 @@
     crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
     crossorigin="anonymous">
-
-    <!-- 부트스트랩 임시 -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <style>
+      a{
+        z-index: 11111;
+      }
 * {
     
     -webkit-box-sizing: border-box;
@@ -28,10 +29,14 @@
 }
 
 .all-container {
-    
+  position: relative;
+  justify-content: center;
+  align-items: center;
     width: 1160px;
-    margin: 0 auto
-}
+    margin: 0 auto;
+    margin-bottom: 100px;
+    margin-top:30px;}
+
 
 body {
     
@@ -40,24 +45,14 @@ body {
     background-size: 100%, 100%;
     background-repeat: no-repeat;
     background-image: url('/static/adventure-blur-close-up-346885.jpg');
-}
-
-h1 {
-    
-    border-left: 12px solid #ffcb02;
-    padding-left: 10px;
-    text-transform: uppercase;
-    font-weight: bold
-}
-
-h2 {
-    
+    background-attachment: fixed;
 }
 
 span {
-    
+  vertical-align: middle;
     font-size: 50px;
-    color: #000000
+    
+    padding-bottom: 10px;
 }
 
 .time h3 {
@@ -71,18 +66,19 @@ h3 {
     color: #d1d1d1;
 }
 
-.container {
-    height: 10%;
+#container {
+  position: relative;
+    height: 100px;
     width: 100%;
     float: left;
-    /* background-color: #fff; */
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -o-border-radius: 4px;
     border-radius: 4px;
-    top:90%;
+    margin-top: -200px;  
     text-transform: uppercase;
-    line-height: 24px
+    line-height: 24px;
+    z-index: -1;
     
 }
 
@@ -95,111 +91,15 @@ h3 {
     text-align: center;
 }
 
-.details {
-    
-    width: 85%;
-    float: left;
-    border-left: 2px dashed #dadde6;
-    padding-left: 10%;
-    position: relative;
-    
-}
-
-
-.details h3:first-child {
-    
-    margin-bottom: 0
-}
-
-.details h2 {
-    
-    margin-top: 0
-}
-
-.details .circle-top {
-    opacity: 0.9;
-    height: 25px;
-    width: 25px;
-    border-radius: 20px;
-    background-color: #dadde6;
-    position: absolute;
-    left: -13px;
-    top: -16px;
-    
-}
-
-.details .circle-bottom {
-  opacity: 0.9;
-    height: 25px;
-    width: 25px;
-    border-radius: 20px;
-    background-color: #dadde6;
-    position: absolute;
-    bottom: -16px ;
-    left: -13px ;
-    
-}
-
-img {
-    
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    margin-right: 20px
-}
-
-.btn {
-    
-    float: right;
-    text-transform: uppercase;
-    margin: 10px;
-    color: #fff;
-    border: none;
-    padding: 5px 12px 5px 12px; 
-}
-
-.btn-booked {
-    
-    background-color: #0877d0;
-    cursor: pointer
-}
-
-.btn-tickets {
-    
-    background-color: #d1d1d1;
-    outline: none
-    
-}
-
-.btn-tickets:hover {
-    
-    cursor: not-allowed
-}
-
-.btn-canceld {
-    
-    background-color: #ed0000 ;
-    cursor: not-allowed;
-    outline: none
-    
-}
     </style>
 <style>
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow:auto;
-}
 
 html {
   box-sizing: border-box;
 }
 
 body {
-  /* background: linear-gradient(45deg, #cc1f30 0%, #7b3584 100%); */
-  /* display: flex; */
   justify-content: center;
   align-items: center;
 }
@@ -221,11 +121,13 @@ body {
 }
 
 .demo-box {
+  border-radius: 4px;
   opacity: 0.9;
   background: #fff;
   margin-bottom: 20px;
   box-shadow: -4px 23px 48px -13px rgba(0, 0, 0, 0.5);
   padding: 20px;
+  padding-top: 5px;
 }
 
 .flight-duration {
@@ -233,8 +135,8 @@ body {
   max-width: 430px;
   margin: 14px auto 0 auto;
   text-align: center;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+  color: black;
   position: relative;
   z-index: 4;
 }
@@ -255,27 +157,36 @@ body {
   position: absolute;
   top: 20px;
   display: block;
-  background: #666;
+  background: gray;
   z-index: 0;
 }
 .flight-info .segments {
   display: table-row;
+  vertical-align: middle; 
+
+
   
 }
 .flight-info .segments > div {
   display: table-cell;
   text-align: center;
   position: relative;
+  vertical-align: middle; 
+
   
 }
 .flight-info .segments .airport {
   display: block;
   font-size: 17px;
-  color: rgba(0, 0, 0, 0.4);
+  color: black ;
 }
 .flight-info .segments .airport:only-child {
   padding-top: 0;
   line-height: 20px;
+  
+}
+.plane{
+  color:cornflowerblue;
 }
 .flight-info .segments .plane {
   width: 36px;
@@ -291,11 +202,14 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   z-index: 5;
+  
 }
 .flight-info .segments time {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 20px;
+  vertical-align: middle; 
+  white-space: nowrap;
 }
 .adaptive{
     position:absolute;
@@ -313,12 +227,14 @@ body {
   padding: 0 8px;
 }
 .flight-info .segments .departure {
-    margin: 10px;
+margin:10px;
   padding: 0 8px 0 0;
+  vertical-align: middle; 
+
 }
 .flight-info .segments .destination {
-    margin: 10px;
     position: absolute;
+    margin:10px;
     left: 200%;
     top: -13%;
   padding: 0 0 0 8px;
@@ -351,7 +267,8 @@ p .info {
 }
 
 .please{
- 
+  vertical-align: middle; 
+
     justify-content: center;
   align-items: center;   
 }
@@ -360,7 +277,14 @@ p .info {
   word-break: keep-all;
 }
 .main{
-  margin-bottom: 10px;
+  margin-top: 0px;
+  font-size: 30px;
+}
+.pe
+{
+  font-size: 15px;
+  float:right;
+text-align: right;
 }
 
 </style>
@@ -368,6 +292,7 @@ p .info {
 <style>
 
 a{
+  z-index: 1000;
   color:black;
 }
 a:hover,
@@ -379,10 +304,12 @@ ul{
   list-style-type:none;
   padding:0;
   margin:0;
+  vertical-align: middle;
 }
         .pagination-box {
             text-align: center;
-            margin-top: 150px;
+            margin-top: 120px;
+            margin-right: -110px;
         }
 
         .pagination {
@@ -445,16 +372,169 @@ ul{
             background-color: transparent;
             color: #fff;
             border:none;
+            vertical-align: middle;
+
         }
         @media only screen and (max-width: 480px){
             .pagination{ display: block; }
             .pagination li{
+              vertical-align: middle;
+
                 display: inline-block;
                 margin-bottom: 20px;
             }
         }
+.icon{
+  color:white;
+  vertical-align: middle;
+  /* padding-bottom: 10px; */
 
+}
 </style>
+
+
+<style>
+    #searchItem,
+    #search,
+    #randomSearch {
+      display: block;
+      font-family: "Lato", sans-serif;
+      /* margin-left: ; */
+    }
+    
+    #searchItem {
+      max-width: 100%;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      outline-color: #252626;
+    }
+    
+    #search,
+    #randomSearch {
+      position: relative;
+
+      color: white;
+      padding: 5px 8px;
+      outline: none;
+      border: 2px solid white;
+      border-radius: 3px;
+      background: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    #search:hover,
+    #randomSearch:hover {
+      border-color: transparent;
+    }
+    #search:hover::before,
+    #randomSearch:hover::before {
+      opacity: 1;
+      -webkit-transform: scale(1, 1);
+              transform: scale(1, 1);
+    }
+    #search::before,
+    #randomSearch::before {
+      position: absolute;
+      content: "";
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-top: 2px solid wheat;
+      border-bottom: 2px solid  wheat;
+      -webkit-transform: scale(0.1, 1);
+              transform: scale(0.1, 1);
+      transition: all 0.3s;
+      z-index: 1;
+      opacity: 0;
+    }
+    
+::-moz-selection {
+  color: #252626;
+  background: #836C4B;
+}
+
+::selection {
+  color: #252626;
+  background: #836C4B;
+}
+
+
+
+.search-button{
+  position: absolute;
+  right: 15%;
+}
+
+    </style>
+
+
+
+<style>
+
+.search-box{
+  position: absolute;
+  top: 80%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  background: white;
+  /* height: 40px; */
+  border-radius: 40px;  
+  padding: 10px;
+}
+.search-box:hover > .search-txt {
+  width: 240px;
+  padding: 0 6px;
+}
+.search-box:hover > .search-btn {
+  background: black;
+}
+.search-btn {
+  color: #EEDA8C;
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-txt {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: black;
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 0px;
+}
+
+
+
+
+#logo2{
+  position: absolute;
+  top:15px;
+  left:120px;
+  width:180px;
+  height:70px;
+  transform: rotate(3deg);
+}
+
+
+.menu--style1{
+
+  margin-top:7px;
+  margin-bottom:-25px;
+}
+</style>
+
 
 
 
@@ -462,7 +542,9 @@ ul{
 </head>
 
 <body>
+    {% if user.is_authenticated %}
 
+    <a href="{% url 'main' %}" data-value="#" ><img src="{% static 'logo4.png' %}" id="logo2" ></a>
     <div class="all-container">
       <!-- <h1>upcoming gigs</h1>    -->
       {% for post in posts %}
@@ -470,7 +552,7 @@ ul{
       <a href = "{% url 'contents_read' post.id %}">
       <div class="demo-box">
         <div class="main">
-          {{post.title}}  {{post.nickname}} / {{post.pub_date}}
+          {{post.title}}  <div class="pe">{{post.user.nickname}} / {{post.pub_date}}</div>
         </div>
         <div class="please">
         <div class="flight-info">
@@ -483,7 +565,7 @@ ul{
             </div>
 
             <div class="divider">
-              <span class="plane"></span>
+              <span class="plane"style="color:cornflowerblue;"></span>
             </div>
             <div class="segment adaptive">
             <span class="airport">{{post.spot}}, {{post.nation}}</span>
@@ -501,6 +583,7 @@ ul{
     </div>
         <div class="flight-duration">희망 동행<br>남:{{post.yourMaleNumber}} / 여:{{post.yourFemaleNumber}}</div>
       </div>
+      <!-- <p class="info">Adaptive fluid flight info</p> -->
 </a>
        {%endfor%}
      </div> 
@@ -508,16 +591,16 @@ ul{
 
 
 
-     <div class="container">
+     <div id="container">
       <div class="row">
           <div class="col-md-offset-2 col-md-8">
               <nav class="pagination-box" aria-label="Page navigation">
-                  <ul class="pagination">
+                  <ul class="pagination" style=" vertical-align: middle;">
                       {%if posts.has_previous%}
 
-                      <li class="page-item">
+                      <li class="page-item" style=" vertical-align: middle;">
                           <a href="?page={{posts.previous_page_number}}" class="page-link" tabindex="-1" aria-label="Previous">
-                              <span aria-hidden="true">&laquo;</span>
+                              <span class="icon" aria-hidden="true">&laquo;</span>
                           </a>
                       </li>
                       {%endif%}
@@ -525,80 +608,47 @@ ul{
                       <li class="page-item">
                           <a class="page-link" href="#">{{posts.number}}</a>
                       </li>
-                      <li class="page-item">
-                          <a class="page-link" href="#">{{posts.paginator.num_pages}}</a>
-                      </li>
-                      <!-- <li class="page-item">
-                          <a class="page-link" href="#">3</a>
-                      </li>
-                      <li class="page-item">
-                          <a class="page-link" href="#">4</a>
-                      </li>
-                      <li class="page-item">
-                          <a class="page-link" href="#">5</a>
-                      </li> -->
                       {%if posts.has_next%}
 
-                      <li class="page-item">
-                          <a href="?page={{posts.next_page_number}}" class="page-link" aria-label="Next">
-                              <span aria-hidden="true">&raquo;</span>
+                      <li class="page-item" style=" vertical-align: middle;">
+                          <a href="?page={{posts.next_page_number}}" class="page-link" aria-label="Next" style=" vertical-align: middle;">
+                              <span class="icon" aria-hidden="true" style=" vertical-align: middle;padding-bottom: 10px;">&raquo;</span>
                           </a>
                       </li>
                       {%endif%}
+
                   </ul>
+                  <a href="{% url 'newpost' %}">                  
+                    <div style="position: relative; right:17px; top:30px; float: right;">
+                      <button id="search" class="search-button"><b>글쓰기</b></button>
+                    </div>
+                  </a>
+                  <form action="{% url 'post_search' %}" method="GET">
+
+                  <div class="search-box" style="vertical-align: middle;">
+                      <input style="vertical-align: middle;" class="search-txt" type="text" name="q" placeholder="Search">
+                      
+                       <button class=" search-btn fas fa-search"></button>
+                    </div>
+                  </form>
+
+              
               </nav>
           </div>
+
       </div>
+      
   </div>
 
-
-
-
-
-
-
-
-
-  <span class="write"><a href = "{% url 'newpost' %}">글쓰기</a></span>
-<!-- 
-    
-
-    <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-            {%if posts.has_previous%}
-              <li class="page-item">
-                <a class="page-link" href="?page={{posts.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
-              </li>
-            {%endif%}
-
-              <li class="page-item"><a class="page-link" href="#">{{posts.number}}</a></li>
-              <li class="page-item"><a class="page-link" href="#">/</a></li>
-              <li class="page-item"><a class="page-link" href="#">{{posts.paginator.num_pages}}</a></li>
-              {%if posts.has_next%}
-              <li class="page-item">
-                <a class="page-link" href="?page={{posts.next_page_number}}">Next</a>
-              </li>
-              {%endif%}
-            </ul>
-    </nav>
-
-     -->
-
-<!-- 
-    <div class="myform">
-    <form class="form-inline my-2 my-lg-0" action="{% url 'post_search' %}">
-        <input class="form-control mr-sm-2" type="text" placeholder="" aria-label="Search" name="q">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
-    </form>
-    </div> -->
-
-    
-
-
+  
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    {% else %}
 
-    
+<script type="text/javascript">
+  alert('로그인이 필요합니다.')
+  window.location.href = '/login';
+</script>
+{% endif %}
 </body>
+{%endblock%}
 </html>

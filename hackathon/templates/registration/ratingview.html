@@ -1,4 +1,7 @@
+{% extends "base.html" %}
+
 {%load staticfiles%}
+{%block main%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +25,7 @@
               @font-face { font-family: 'BBTreeGR'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGR.woff') format('woff'); font-weight: normal; font-style: normal; }
             body{
                     
-                    background: #fff;
+                    background: rgba(228, 242, 247, 0.582);
                     font-family: 'Libre Baskerville', sans-serif;
                     
                 }
@@ -97,6 +100,7 @@ div [class^="col-"]{
 }
 .card-text{
   height:80px;  
+  margin-left: 10px;
 }
 
 .card::before, .card::after {
@@ -156,17 +160,33 @@ h1{
     font-family: 'Open Sans', sans-serif;
     color: rgb(255, 136, 0);
     font-weight: 20px;
-    text-align: right;
+    text-align: center;
+}
+
+
+.menu--style1{
+  height:80px;
+  margin-top:9px;
+
+}
+
+#logo2{
+  position: absolute;
+  top:8px;
+  left:120px;
+  width:170px;
+  height:75px;
+  transform: rotate(3deg);
 }
 
     </style>
             </head>
         
         <body style="overflow-x:hidden">
-                
+            <a href="{% url 'main' %}" data-value="#" ><img src="{% static 'logo4.png' %}" id="logo2" ></a>
                 <header class = "title">
                          <div class="image-container">
-                                <img src="https://images.pexels.com/photos/1243253/pexels-photo-1243253.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="city-image.jpeg" height="1000" width="540">
+                                <img src="https://images.pexels.com/photos/1243253/pexels-photo-1243253.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="city-image.jpeg" height="1000" width="510">
                               </div> 
                      
         
@@ -174,14 +194,14 @@ h1{
                      
                             <div class="container mt-2">
                                   
-                                      <h1> {{target_sign.nickname}}님의 총 평점:{{average}}</h1>
+                                      <h1> {{target_sign.nickname}}님의 총 평점: {{average}}</h1>
                                       <div class="row">
                                       {% for review in rate %}
                                         <div class="col-md-3 col-sm-6">
                                           <div class="card card-block">
                                           
-                                            <h5 class="card-title  mt-3 mb-3">{{review.reviewer}}</h5>
-                                            <h4 class="card-title2">STAR: <strong>{{review.star}}</strong></h4> 
+                                          
+                                            <h4 class="card-title2">★별점: <strong>{{review.star}}★</strong></h4> 
                                             <p class="card-text">{{review.contents}}</p> 
                                     </div> 
                                       </div>
@@ -199,3 +219,4 @@ h1{
 
  
           </body>
+          {%endblock%}

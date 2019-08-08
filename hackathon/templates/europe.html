@@ -8,10 +8,10 @@
     <title>유럽</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="{% static 'js/app.js' %}"></script>
+
     <style>
 
 @font-face { font-family: 'Handon3gyeopsal600g'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/Handon3gyeopsal600g.woff') format('woff'); font-weight: normal; font-style: normal; }
@@ -24,6 +24,7 @@
         html {
   min-width: 400px;
 }
+
 
 html, body, main {
   background: ghostwhite;
@@ -75,18 +76,98 @@ a {
   line-height: 2;
 }
 
+.info{
+  width: 100%;
+  background-color: #00ab66;
+}
+
+.info .inner-info{
+  padding: 50px 0px;
+  width: 65%;
+  margin: 0 auto;
+}
+
+.info .inner-info h2{
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  padding-bottom: 15px;
+}
+
+.info .inner-info .boxes{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info .inner-info .boxes .box{
+  width: 24%;
+  height: auto;
+  background: #efefef;
+}
+
+.info .inner-info .boxes .box .cnt{
+  width: 100%;
+  text-align: center;
+  padding: 10px 0px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.box .img{
+  width: 100%;
+  height: 100%;
+}
+
+.box .img img{
+  width: 100%;
+}
+
+.box .cty{
+  width: 100%;
+  text-align: center;
+  padding: 10px 0px;
+  font-family: 'Open Sans', sans-serif;
+}
+
     
     </style>
 
 </head>
 
 
-    <main role="main">
-            {% for c in eu %}
-        <section>
-            <button role="button"><a href="{% url 'get_nation' c.pk %}">{{c.name}}</a></button>
-        </section>
-        {%endfor%}
-    </main>
-
+    <section class="info">
+        <div class="inner-info">
+          <h2>유럽</h2>
+          
+          <div class="boxes">
+            
+            <div class="box">
+              <div class="cnt">프랑스</div>
+              <a href="{% url 'get_nation' name='프랑스' %}">
+              <div class="img"><img src="{%static 'france.jpg'%}"></div>
+            </a>
+            </div>
+            <div class="box">
+                <div class="cnt">영국</div>
+                <a href="{% url 'get_nation' name='영국' %}">
+                <div class="img"><img src="{%static 'uk.jpg'%}"></div>
+              </a>
+              </div>
+            <div class="box">
+                <div class="cnt">독일</div>
+                <a href="{% url 'get_nation' name='독일' %}">
+                <div class="img"><img src="{%static 'german.jpg'%}"></div>
+              </a>
+            </div>
+            <div class="box">
+                <div class="cnt">스위스</div>
+                <a href="{% url 'get_nation' name='스위스' %}">
+                <div class="img"><img src="{%static 'swiss.jpg'%}"></div>
+              </a>
+            </div>
+        </div>
+        
+      </section>
 </html>

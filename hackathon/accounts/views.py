@@ -135,7 +135,7 @@ def loginhome(request):
             dic3[g.event] = l3
         
         
-        if len(l2)>0:
+        if len(l)>0:
             flag = True
         
 

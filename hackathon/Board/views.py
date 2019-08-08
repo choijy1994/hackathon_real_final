@@ -229,7 +229,8 @@ def approve(request,user_id,post_id):
     participants.objects.get_or_create(event=post,participate = Usr)
     applicants.objects.get(event=post,apply=Usr).delete()
     applicant = applicants.objects.filter(event = post)
-    participant = participants.objects.filter(event = post)
+    User = Signup.objects.get(user=request.user)
+    participant = participants.objects.filter(event = post).exclude(participate=User)
     context = {
         'post':post,
         'applicant':applicant,
@@ -243,7 +244,8 @@ def deny(request,user_id,post_id):
     Usr = Signup.objects.get(pk = user_id)
     applicants.objects.get(event=post,apply=Usr).delete()
     applicant = applicants.objects.filter(event = post)
-    participant = participants.objects.filter(event = post)
+    User = Signup.objects.get(user=request.user)
+    participant = participants.objects.filter(event = post).exclude(participate=User)
     context = {
         'post':post,
         'applicant':applicant,
@@ -258,7 +260,8 @@ def cancel(request,user_id,post_id):
     participants.objects.get(event=post,participate=Usr).delete()
     applicants.objects.get_or_create(event=post,apply=Usr)
     applicant = applicants.objects.filter(event = post)
-    participant = participants.objects.filter(event = post)
+    User = Signup.objects.get(user=request.user)
+    participant = participants.objects.filter(event = post).exclude(User)
     context = {
         'post':post,
         'applicant':applicant,
@@ -393,18 +396,20 @@ def rating(request,user_id,post_id):
         post = Post.objects.get(pk=post_id)
         flag = False
         
-        if Rating.objects.filter(event=post,reviewer=user_signup,reviewee=target_sign).count()>0:
+        if Rating.objects.filter(event=post,reviewer=user_signup,reviewee=target_sign).count()==0:
+            
+            Rating.objects.get_or_create(
+                event = post,
+                reviewer = user_signup,
+                reviewee = target_sign,
+                star = request.POST['star'],
+                contents = request.POST['contents']
+            )
             return redirect('mygroup')
-        Rating.objects.get_or_create(
-            event = post,
-            reviewer = user_signup,
-            reviewee = target_sign,
-            star = request.POST['star'],
-            contents = request.POST['contents']
-        )
     
     return render(request,'registration/rating.html')
-
+    
+    
 def confirm(request,post_id):
     post = get_object_or_404(Post,pk = post_id)
     post.Confirm = True
@@ -456,9 +461,8 @@ def africa(request):
     return render(request, 'africa.html', context)
 
 
-def get_nation(request, pk):
-    nations = get_object_or_404(Country, pk= pk)
-    name = nations.name
+def get_nation(request, name):
+
     posts = Post.objects.filter(nation=name).order_by('-pub_date')
     print(posts)
     context = {
