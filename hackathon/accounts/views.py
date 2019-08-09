@@ -14,7 +14,7 @@ from django.shortcuts import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 import datetime
-from django.core.files import File
+from django.contrib.auth.hashers import check_password
 
 def home(request):
     return render(request, 'main.html')
@@ -47,6 +47,7 @@ def mypage(request):
         image=conn_profile.image.url
 
     context={
+        'user':conn_profile,
         'userid':conn_user.username,
         'name': conn_profile.name, 
         'nickname':conn_profile.nickname,
@@ -170,7 +171,7 @@ def delete(request):
             request.user.delete()
             return redirect('registration/deletesuccess')   
         else: 
-            return render(request, 'delete.html', {'error': '비밀번호가 틀렸습니다.'})    
+            return render(request, 'registration/delete.html', {'error': '비밀번호가 틀렸습니다.'})    
     return render(request, 'registration/delete.html')
 
 def deletesuccess(request):

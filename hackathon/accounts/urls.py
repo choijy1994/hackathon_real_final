@@ -19,5 +19,6 @@ urlpatterns = [
     path('add_friends/<int:post_id>',add_friend,name="add_friend"),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('loginhome/delete/',delete, name="delete"),
-    path('deletesuccess/', deletesuccess, name="deletesuccess")
+    path('deletesuccess/', deletesuccess, name="deletesuccess"),
+    path('loginhome/delete/registration/deletesuccess', deletesuccess, name="deletesuccess")
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
