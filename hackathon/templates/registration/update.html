@@ -1,4 +1,4 @@
-{%load staticfiles%}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +7,489 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="{% static 'js/app.js' %}"></script>
+
+    <style>
+    *, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+
+
+ @use postcss-nested;
+
+body {
+  /* background: url('http://media.idownloadblog.com/wp-content/uploads/2014/06/Yosemite.jpg') fixed;
+  
+  background-size: cover; */
+  background-color: rgb(223, 238, 248);
+  padding: 0;
+  margin: 0;
+  
+}
+
+
+
+p.form-title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: right;
+  color: rgb(0, 0, 0);
+  margin-top: 20%;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+  margin-left: 140px;
+}
+
+form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+form input[type="text"], form input[type="password"] {
+  width: 170%;
+  margin: 0 black;
+  padding: 5px 10px;
+  background: 0;
+  border: 0;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  outline: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  margin-top:10px;
+  color: rgb(0, 0, 0);
+  outline: 0;
+}
+
+form image {
+    margin-bottom: 60px;
+
+}
+
+form input[type="submit"] {
+  width: 110%;
+  background: #8de3ee;
+  border: 0;
+  padding: 7px;
+  color: rgb(2, 0, 0);
+  
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 40px;
+  outline: 0;
+  cursor: pointer;
+}
+
+/* form input[type="submit"]:hover {
+  transition: background-color 0.5s ease;
+  background-color: #656a6b;
+} */
+
+
+form label, form a {
+  font-family: 'Open Sans', sans-serif;
+  
+  font-weight: 400;
+  color: black;
+  
+}
+
+
+
+form label {
+  cursor: pointer;
+  
+  margin-bottom: 20px;
+  font-size:20px;
+}
+
+form a {
+   
+  float: right;
+  text-decoration: none;
+  transition: color 0.5s ease;
+}
+
+form a:hover {
+  color: #443c3c;
+}
+
+/* .pr-wrap {
+  background: rgba(0,0,0,0.7);
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: none;
+} */
+
+.show-pass-reset {
+  display: block !important;
+}
+
+
+
+.error{
+
+    
+   color: rgb(99, 94, 94);
+   font-weight: 100;
+   font-family: 'Open Sans Condensed', sans-serif;
+   font-size: 15px;
+    /* position: relative; */
+    text-align: center;
+    /* left: 650;
+    top: 550;
+        */
+}
+
+
+
+form{
+    
+    position:absolute;
+    left:300;
+    color: rgb(50, 52, 53);
+    margin-left:13em;
+    word-break: break-all;
+    word-wrap: break-word;
+    
+
+}
+
+
+
+
+/* 
+* Design by Gil Huybrecht: https://goo.gl/RvBtil
+*/
+
+
+.wrapper {
+    height: 650px;
+    width: 1000px;
+    margin: 10px auto 0 auto;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.info-container {
+   float: left;   
+   height: 650px;
+   width: 600px;
+   margin: 0;   
+}
+
+.sign-up-text {
+   float: left; 
+   height: 220px; 
+   width: 600px;
+   padding: 70px 0 10px 70px;
+   box-sizing: border-box;
+}
+
+.sign-up-text h1 {
+   margin: 15px 0 0 0;
+   font-weight: 300;
+   font-size: 40px;
+   letter-spacing: 1px;
+}
+
+.sign-up-text h2 {
+   margin: 0;
+   text-transform: uppercase;
+   font-size: 10px;
+   letter-spacing: 2px;
+   color:  #7B8D92;
+}
+
+.sign-up-text p {
+   height: 45px;
+   width: 430px;
+   margin: 15px 0 0 0;
+   overflow: hidden;
+   font-size: 11px;
+   font-weight: 400;
+   line-height: 2em;
+   color: rgb(0, 0, 0);
+}   
+
+.sign-up-social {
+   float: left; 
+   height: 280px;
+   width: 600px;
+   margin: 10px 0 10px 0;
+   box-sizing: border-box;
+}   
+
+.sign-up-link {
+   height: 65px;
+   width: 400px;
+   margin: 20px 20px 20px 70px;
+   padding: 25px 10px 20px 10px;
+   border: 1px solid  #DDE5DD;
+   border-radius: 5px;
+   box-sizing: border-box;
+   overflow: hidden;
+   font-size: 11px;
+   text-transform: uppercase;
+   cursor: pointer;
+}
+
+.sign-up-link:hover {
+  box-shadow: 3px 3px 48px 10px rgba(221,229,221,0.29);
+       -webkit-box-shadow: 3px 3px 48px 10px rgba(221,229,221,0.29);
+        -moz-box-shadow: 3px 3px 48px 10px rgba(221,229,221,0.29);
+    border: 1px solid transparent; /* prevents divs from jumping*/
+}
+
+.sign-up-link a {
+   display: inline-block; 
+   text-decoration: none;
+   font-weight: bold;
+   letter-spacing: 2px;
+   color: #464B56;
+}
+
+
+
+
+.positioning-left {
+   display: inline-block;
+   float: left;
+   height: 60px;
+   width: 300px;
+   margin: 50px 0 0 70px;
+}
+
+.positioning-right {
+   display: inline-block;
+   float: right;
+   height: 60px;
+   width: 160px;
+   margin: 50px 70px 0 0;
+}
+
+.positioning-left  p {
+   float: left;
+   margin: 0;
+   font-size: 12px;
+   font-weight: 400;
+   color:  #7B8D92;
+}
+
+.positioning-right a {
+   float: right;
+   display: block;
+   margin: 0;
+   font-size: 9px;
+   text-decoration: none;
+   text-transform: uppercase;
+   letter-spacing: 0.2em;
+   font-weight: bolder;
+   color: #B0D374;
+}
+
+.positioning-right a:hover {
+   color: #70A907;
+}
+
+.image-container {
+   float: right;
+   height: 650px;
+   width: 630px;
+   margin: 0;   
+  top:0px;
+
+}
+
+
+.helptext{
+      visibility: hidden;
+    }
+ 
+
+
+ul{
+        /* visibility:hidden; */
+        display: none;
+    }
+
+    
+
+.buttonform{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+    width:80;
+    
+
+    
+}
+
+.btn{
+    width:100;
+    height:30;
+    position: absolute;
+    left:165;
+    font-family: 'Open Sans', sans-serif;
+    
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  /* color: #2ecc71; */
+color: black;
+  margin-top: 10%;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 60px;
+    /* border: 1px solid grey; */
+   bottom:-60;
+}
+
+textarea{
+    width: 420;
+    
+}   
+
+.content {
+    margin-left: 5em;
+    
+   
+}
+
+.container {
+    /* font-size:30px;*/
+}
+
+
+
+
+
+.button {
+    width:400px;
+}
+
+.block-wrapper {
+    margin-left:6em;
+}
+
+/* CRISS CROSS BUTTON
+------------------------*/
+#criss-cross .gps-button {
+    background: linear-gradient(to right, rgba(255,255,255,0), #fff 50%) 250% 100% / 100% 0 no-repeat, linear-gradient(to right, #3eaad8, #3eaad8) 100% 100% / 100% 2px no-repeat, linear-gradient(to right, #3eaad8, #3eaad8) 100% 0% / 100% 2px no-repeat, linear-gradient(to right, #3eaad8, #3eaad8) 0 0 / 2px 100% no-repeat, linear-gradient(to right, #3eaad8, #3eaad8) 100% 0 / 2px 100% no-repeat;
+    color: #008cd8;
+    cursor: pointer !important;
+      display: inline-block;
+      font: normal normal 20px / 1.35 "Work Sans", Helvetica, Arial, Verdana, sans-serif;
+      padding: 5px 8px;
+    text-decoration: none !important;
+    transition: all .45s ease-in-out; }
+
+
+
+#criss-cross .gps-button:hover, #criss-cross .gps-button:focus {
+    background-position: 0 100%, 100% 0;
+    color: #000;
+    outline: none;
+    transition: all .45s ease-in-out; }
+
+   
+   
+
+
+textarea{
+    background-color:  rgb(223, 238, 248);
+    border-color: rgb(77, 194, 233);
+    border-width: 0.2em;
+    
+
+    border-radius:10px;
+    opacity: 0.7;
+    margin-top:1em;
+    
+}
+
+#image-clear_id{
+    display:none;
+}
+checkbox{
+    display:hidden;
+}
+label[for="image-clear_id"]
+{
+    display:none;
+}
+a{
+    position:absolute;
+    top:41.5%;
+    left:63%;
+    white-space:nowrap;
+
+}
+
+
+
+
+
+   
+   
+</style>
 </head>
 <body>
-    <h1>글수정하기</h1>
-    <form method="POST" class="post-form"enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="save btn btn-default">수정</button>
-    </form>
+        {% block main %}
+
+
+        <div class="container">
+        
+          
+                <form method="POST" class="post-form"enctype="multipart/form-data">
+              
+              <p class="form-title">수정하기</p><br>
+              
+             <div class="content">
+                    {% csrf_token %}
+                    <div class="realform">{{form.as_p}}</div>
+
+                    
+                    
+                    <!-- <div class="button">
+                        <button type="submit" class="material ghost">수정</button>
+                    </div> -->
+
+                    
+                    <div class="block-wrapper">
+                        <div type="submit" id="criss-cross" class="gps-button-wrapper"><button class="gps-button">Submit!</button></div>
+                    </div>
+                
+
+             </div>
+                
+                 
+                
+               
+        
+               
+        
+                  </form>
+              </div>
+              <div class="image-container">
+                    <img src="https://images.pexels.com/photos/1544880/pexels-photo-1544880.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="city-image.jpeg" height="750" width="650">
+                  </div>
+        
+        
+        
+        
+        {% endblock %}
 </body>
 </html>
+
