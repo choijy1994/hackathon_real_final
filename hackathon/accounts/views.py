@@ -14,6 +14,7 @@ from django.shortcuts import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 import datetime
+from django.core.files import File
 
 def home(request):
     return render(request, 'main.html')
@@ -25,9 +26,9 @@ def signup(request):
     if request.method=="POST":
         form = UserCreationMultiForm(request.POST,request.FILES)
         if form.is_valid():
-            User = form['User'].save()
-            new_user = form['signup'].save(commit=False)
-            print(new_user.image)
+            User = form['user'].save()
+            #print(form['signup'])
+            new_user = form['signup'].save(commit=False) 
             new_user.user = User
             new_user.save()
             return redirect('login')

@@ -152,6 +152,9 @@ p{font-family: 'Marmelad', sans-serif;}
   box-shadow: 0px 5px 3px 0px rgba(50, 50, 50, 0.3);
   margin-bottom: 1cm;
   text-align: center;
+  padding-bottom: 10px;
+  
+
   
 
   
@@ -163,12 +166,15 @@ p{font-family: 'Marmelad', sans-serif;}
 .complete{
     position:relative;
     top:-40px;
+    
 
 }
 
 #big-message{
     position:relative;
     top:-30px;
+    
+    
 }
 
 
@@ -308,8 +314,12 @@ p{font-family: 'Marmelad', sans-serif;}
                         <input class="c-button c-button--small c-button--outline" type="button" value = "평가하기"></a>
 
                     </h3>
+                    
                     </div>
+                   
                 {%endfor%}
+               
+               
                 
         
           
@@ -326,7 +336,7 @@ p{font-family: 'Marmelad', sans-serif;}
                   <a href = "{% url 'ratingview' v2.participate.id %}">
                   <input class="c-button c-button--small c-button--outline" type="button" value = "후기 보기"></a>
                 </h3>
-                <br>
+               
               {%endfor%}
             </div>
               {%endif%}
@@ -365,13 +375,13 @@ p{font-family: 'Marmelad', sans-serif;}
                 <a href = "{% url 'ratingview' v.participate.id %}">
                 <input class="c-button c-button--small c-button--outline" type="button" value = "후기 보기"></a>
             </h3>
-            <br>
+            
         {%endfor%}
-    
-        {%endfor%}
+   
+       
         
         </div>
-    
+        {%endfor%}
     </div>
         </div>  
         {%if flag is False%}

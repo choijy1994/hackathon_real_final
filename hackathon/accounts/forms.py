@@ -30,7 +30,7 @@ class SignupForm(forms.ModelForm):
 class UserCreationMultiForm(MultiForm):
     labels={ 'username': ('사용자 아이디')}
     form_classes = {
-        'User':UserCreationForm,
+        'user':UserCreationForm,
         'signup':SignupForm,
         
     }

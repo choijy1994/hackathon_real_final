@@ -77,7 +77,16 @@ div [class^="col-"]{
   border: 1px solid rgba(139, 175, 216, 0);
   margin-bottom: 10px;
   margin-top: 30px;
+  overflow: scroll;
+  
+  -ms-overflow-style: none; 
 }
+
+::-webkit-scrollbar { 
+    display: none !important; 
+  }
+
+
 .card-title{  
   font-size:15px;
   transition:1s;
@@ -190,7 +199,8 @@ h1{
                               </div> 
                      
         
-                     <div class="card-container">
+                     <div class="card-container" ms-overflow-style: none>
+
                      
                             <div class="container mt-2">
                                   
